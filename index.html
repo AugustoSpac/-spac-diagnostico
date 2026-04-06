@@ -231,7 +231,12 @@
         }
 
         .scale-option input[type="radio"] {
-            display: none;
+            display: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .scale-option label {
@@ -246,16 +251,21 @@
             font-size: 14px;
             transition: all 0.3s ease;
             margin: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .scale-option input[type="radio"]:checked + label {
-            background: #f4a261;
-            color: white;
-            border-color: #f4a261;
+            background: #f4a261 !important;
+            color: white !important;
+            border-color: #f4a261 !important;
         }
 
         .scale-option label:hover {
             border-color: #f4a261;
+            background: rgba(244, 162, 97, 0.1);
         }
 
         .radio-group {

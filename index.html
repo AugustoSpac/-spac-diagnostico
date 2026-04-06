@@ -3,16 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico Estratégico - SPAC Gestão</title>
+    <title>Diagnóstico Estratégico</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             min-height: 100vh;
             display: flex;
@@ -20,308 +15,96 @@
             justify-content: center;
             padding: 20px;
         }
-
         .container {
             background: white;
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             max-width: 600px;
             width: 100%;
-            overflow: hidden;
         }
-
         .header {
             background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
             padding: 40px 30px;
             text-align: center;
             color: white;
         }
-
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 14px;
-            opacity: 0.95;
-        }
-
+        .header h1 { font-size: 28px; margin-bottom: 10px; font-weight: 700; }
+        .header p { font-size: 14px; opacity: 0.95; }
         .progress-bar {
             width: 100%;
             height: 4px;
             background: #e0e0e0;
         }
-
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #f4a261 0%, #e76f51 100%);
             transition: width 0.3s ease;
         }
-
-        .form-content {
+        .content {
             padding: 40px 30px;
             min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
-
-        .step {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .step.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .step-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 10px;
-        }
-
-        .step-subtitle {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .step-intro {
-            margin-bottom: 30px;
-        }
-
-        .step-intro h2 {
-            font-size: 24px;
-            color: #1a1a2e;
-            margin-bottom: 15px;
-        }
-
-        .step-intro ul {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .step-intro li {
-            padding: 10px 0 10px 25px;
-            position: relative;
-            color: #333;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .step-intro li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #f4a261;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .time-estimate {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 14px;
-            color: #666;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .time-estimate:before {
-            content: "⏱";
-            font-size: 18px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            font-size: 15px;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 12px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #f4a261;
-            box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .scale-instruction {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 20px;
-            border-left: 4px solid #f4a261;
-        }
-
-        .scale-question {
-            margin-bottom: 25px;
-        }
-
-        .scale-question label {
-            margin-bottom: 12px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .step-title { font-size: 24px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; }
+        .step-subtitle { font-size: 14px; color: #666; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; color: #1a1a2e; margin-bottom: 8px; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px; font-family: inherit; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #f4a261; }
+        textarea { min-height: 80px; resize: vertical; }
         .scale-buttons {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
-
         .scale-btn {
             flex: 1;
             min-width: 45px;
-            padding: 12px;
+            padding: 10px;
             border: 2px solid #e0e0e0;
             background: white;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            user-select: none;
+            font-size: 13px;
+            transition: all 0.2s;
         }
-
-        .scale-btn:hover {
-            border-color: #f4a261;
-            background: rgba(244, 162, 97, 0.1);
-        }
-
-        .scale-btn.active {
-            background: #f4a261;
-            color: white;
-            border-color: #f4a261;
-        }
-
-        .radio-group {
-            display: grid;
-            gap: 12px;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-        }
-
-        .radio-option input[type="radio"] {
-            margin-right: 12px;
-            cursor: pointer;
-            width: 18px;
-            height: 18px;
-            accent-color: #f4a261;
-        }
-
-        .radio-option label {
-            margin: 0;
-            cursor: pointer;
-            font-weight: 400;
-            font-size: 14px;
-        }
-
+        .scale-btn:hover { border-color: #f4a261; background: rgba(244, 162, 97, 0.1); }
+        .scale-btn.selected { background: #f4a261; color: white; border-color: #f4a261; }
+        .scale-question { margin-bottom: 20px; }
         .button-group {
             display: flex;
             gap: 12px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
-
         button {
-            padding: 14px 24px;
+            padding: 12px 24px;
             border: none;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            flex: 1;
         }
-
         .btn-primary {
             background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
             color: white;
-            flex: 1;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(244, 162, 97, 0.3);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-secondary {
-            background: #f5f5f5;
-            color: #333;
-            flex: 1;
-        }
-
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-
-        .success-message {
-            background: #efe;
-            color: #3c3;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            border-left: 4px solid #3c3;
-        }
-
-        @media (max-width: 600px) {
-            .header { padding: 30px 20px; }
-            .header h1 { font-size: 22px; }
-            .form-content { padding: 30px 20px; }
-            .step-title { font-size: 20px; }
-            .scale-buttons { gap: 6px; }
-            .scale-btn { min-width: 40px; padding: 10px 8px; font-size: 12px; }
-        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(244, 162, 97, 0.3); }
+        .btn-secondary { background: #f5f5f5; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .intro-list { list-style: none; margin: 20px 0; }
+        .intro-list li { padding: 10px 0 10px 25px; position: relative; color: #333; font-size: 14px; }
+        .intro-list li:before { content: "✓"; position: absolute; left: 0; color: #f4a261; font-weight: bold; }
+        .time-box { background: #f5f5f5; padding: 12px; border-radius: 6px; font-size: 13px; color: #666; margin: 15px 0; }
+        .success { background: #efe; color: #3c3; padding: 20px; border-radius: 8px; text-align: center; }
+        .radio-group { display: grid; gap: 10px; }
+        .radio-option { display: flex; align-items: center; }
+        .radio-option input { width: 18px; height: 18px; margin-right: 10px; accent-color: #f4a261; }
+        .radio-option label { margin: 0; font-weight: 400; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -330,34 +113,27 @@
             <h1>Diagnóstico Estratégico</h1>
             <p>Descubra o que está travando o crescimento da sua empresa</p>
         </div>
-
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-        <div class="form-content">
-            <!-- STEP 1: INTRODUÇÃO -->
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        <div class="content">
+            <!-- STEP 1 -->
             <div class="step active" data-step="1">
-                <div class="step-intro">
-                    <h2>Descubra o que está travando o crescimento da sua empresa</h2>
-                    <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">Em menos de 5 minutos, identifique os principais gargalos de gestão, receita e execução — e receba um diagnóstico estratégico com oportunidades claras de crescimento.</p>
-                    <ul>
-                        <li>Entenda seu nível de gestão atual</li>
-                        <li>Identifique onde sua empresa perde dinheiro</li>
-                        <li>Descubra as principais alavancas de crescimento</li>
-                    </ul>
-                    <div class="time-estimate">Leva menos de 5 minutos</div>
-                </div>
+                <h2 class="step-title">Descubra o que está travando o crescimento</h2>
+                <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">Em menos de 5 minutos, identifique os principais gargalos de gestão, receita e execução.</p>
+                <ul class="intro-list">
+                    <li>Entenda seu nível de gestão atual</li>
+                    <li>Identifique onde sua empresa perde dinheiro</li>
+                    <li>Descubra as principais alavancas de crescimento</li>
+                </ul>
+                <div class="time-box">⏱ Leva menos de 5 minutos</div>
             </div>
 
-            <!-- STEP 2: QUALIFICAÇÃO -->
+            <!-- STEP 2 -->
             <div class="step" data-step="2">
-                <div class="step-title">Vamos começar</div>
-                <div class="step-subtitle">Precisamos entender um pouco sobre sua empresa</div>
-
+                <div class="step-title">Sobre sua empresa</div>
+                <div class="step-subtitle">Precisamos entender um pouco sobre você</div>
                 <div class="form-group">
-                    <label for="faturamento">Qual o faturamento anual da sua empresa?</label>
-                    <select id="faturamento" required>
+                    <label>Faturamento anual:</label>
+                    <select id="faturamento">
                         <option value="">Selecione...</option>
                         <option value="5-10">R$ 5M - R$ 10M</option>
                         <option value="10-25">R$ 10M - R$ 25M</option>
@@ -366,10 +142,9 @@
                         <option value="100+">Acima de R$ 100M</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="colaboradores">Quantos colaboradores sua empresa possui?</label>
-                    <select id="colaboradores" required>
+                    <label>Colaboradores:</label>
+                    <select id="colaboradores">
                         <option value="">Selecione...</option>
                         <option value="10-50">10 - 50</option>
                         <option value="50-100">50 - 100</option>
@@ -378,328 +153,227 @@
                         <option value="500+">500+</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="segmento">Qual o segmento da sua empresa?</label>
-                    <select id="segmento" required>
+                    <label>Segmento:</label>
+                    <select id="segmento">
                         <option value="">Selecione...</option>
                         <option value="varejo">Varejo</option>
                         <option value="industria">Indústria</option>
                         <option value="servicos">Serviços</option>
                         <option value="tecnologia">Tecnologia</option>
                         <option value="distribuicao">Distribuição</option>
-                        <option value="saude">Saúde</option>
-                        <option value="educacao">Educação</option>
                         <option value="outro">Outro</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="cargo">Qual o seu cargo?</label>
-                    <select id="cargo" required>
+                    <label>Seu cargo:</label>
+                    <select id="cargo">
                         <option value="">Selecione...</option>
                         <option value="dono">Dono/Sócio</option>
                         <option value="ceo">CEO</option>
-                        <option value="diretor-geral">Diretor Geral</option>
-                        <option value="diretor-operacional">Diretor Operacional</option>
-                        <option value="diretor-comercial">Diretor Comercial</option>
-                        <option value="diretor-financeiro">Diretor Financeiro</option>
+                        <option value="diretor">Diretor</option>
                         <option value="gerente">Gerente</option>
                         <option value="outro">Outro</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label>Você sente que sua empresa hoje está:</label>
+                    <label>Situação atual:</label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="status1" name="status" value="crescendo-controle" required>
-                            <label for="status1">Crescendo com controle</label>
+                            <input type="radio" name="status" value="crescendo-controle" id="s1">
+                            <label for="s1">Crescendo com controle</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="status2" name="status" value="crescendo-desorganizada">
-                            <label for="status2">Crescendo, mas desorganizada</label>
+                            <input type="radio" name="status" value="crescendo-desorganizada" id="s2">
+                            <label for="s2">Crescendo, mas desorganizada</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="status3" name="status" value="estagnada">
-                            <label for="status3">Estagnada</label>
+                            <input type="radio" name="status" value="estagnada" id="s3">
+                            <label for="s3">Estagnada</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="status4" name="status" value="perdendo-performance">
-                            <label for="status4">Perdendo performance</label>
+                            <input type="radio" name="status" value="perdendo" id="s4">
+                            <label for="s4">Perdendo performance</label>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 3: CONTATO -->
+            <!-- STEP 3 -->
             <div class="step" data-step="3">
                 <div class="step-title">Seus dados</div>
                 <div class="step-subtitle">Para enviar seu diagnóstico</div>
-
                 <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" required>
+                    <label>Nome:</label>
+                    <input type="text" id="nome">
                 </div>
-
                 <div class="form-group">
-                    <label for="whatsapp">WhatsApp</label>
-                    <input type="tel" id="whatsapp" placeholder="(11) 99999-9999" required>
+                    <label>WhatsApp:</label>
+                    <input type="tel" id="whatsapp" placeholder="(11) 99999-9999">
                 </div>
-
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
+                    <label>Email:</label>
+                    <input type="email" id="email">
                 </div>
             </div>
 
-            <!-- STEP 4: DIAGNÓSTICO (ESCALA 0-5) -->
+            <!-- STEP 4 - ESCALA -->
             <div class="step" data-step="4">
                 <div class="step-title">Avaliação de Gestão</div>
-                <div class="step-subtitle">Avalie cada dimensão de 0 a 5</div>
-
-                <div class="scale-instruction">
-                    <strong>Escala:</strong><br>
-                    0 = Não existe | 1 = Existe informalmente | 2 = Existe, mas não é usado<br>
-                    3 = Usado, mas inconsistente | 4 = Funciona bem | 5 = Funciona com consistência
+                <div class="step-subtitle">Avalie de 0 a 5 (0=não existe, 5=funciona perfeitamente)</div>
+                <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; margin-bottom: 20px; font-size: 12px; color: #666; border-left: 3px solid #f4a261;">
+                    <strong>Escala:</strong> 0=Não existe | 1=Informal | 2=Existe mas não usa | 3=Inconsistente | 4=Funciona bem | 5=Perfeito
                 </div>
 
-                <!-- ESTRATÉGIA -->
-                <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0;">
-                    <h3 style="color: #1a1a2e; margin-bottom: 20px; font-size: 16px; font-weight: 700;">ESTRATÉGIA</h3>
-                    
-                    <div class="scale-question">
-                        <label>Sua empresa tem 3 a 5 prioridades estratégicas realmente claras?</label>
-                        <div class="scale-buttons" id="q1-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Está claro onde está o principal crescimento (clientes, produtos ou canais)?</label>
-                        <div class="scale-buttons" id="q2-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>As decisões do dia a dia seguem uma direção clara ou são mais reativas?</label>
-                        <div class="scale-buttons" id="q3-buttons"></div>
-                    </div>
+                <div class="scale-question">
+                    <label>Prioridades estratégicas claras?</label>
+                    <div class="scale-buttons" id="q1"></div>
                 </div>
-
-                <!-- COMERCIAL / RECEITA -->
-                <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0;">
-                    <h3 style="color: #1a1a2e; margin-bottom: 20px; font-size: 16px; font-weight: 700;">COMERCIAL / RECEITA</h3>
-                    
-                    <div class="scale-question">
-                        <label>Você consegue prever o faturamento do próximo mês com segurança?</label>
-                        <div class="scale-buttons" id="q4-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Existe uma rotina comercial estruturada (metas, acompanhamento, cadência)?</label>
-                        <div class="scale-buttons" id="q5-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Os responsáveis por vendas têm metas claras e acompanhamento frequente?</label>
-                        <div class="scale-buttons" id="q6-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Sua empresa trabalha ativamente a base de clientes (retenção, recorrência)?</label>
-                        <div class="scale-buttons" id="q7-buttons"></div>
-                    </div>
+                <div class="scale-question">
+                    <label>Crescimento claro (clientes, produtos, canais)?</label>
+                    <div class="scale-buttons" id="q2"></div>
                 </div>
-
-                <!-- EXECUÇÃO E METAS -->
-                <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0;">
-                    <h3 style="color: #1a1a2e; margin-bottom: 20px; font-size: 16px; font-weight: 700;">EXECUÇÃO E METAS</h3>
-                    
-                    <div class="scale-question">
-                        <label>As metas da empresa são desdobradas por área ou pessoa?</label>
-                        <div class="scale-buttons" id="q8-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Quando há desvio de meta, existe um plano de ação estruturado?</label>
-                        <div class="scale-buttons" id="q9-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Existe acompanhamento frequente das metas (semanal/mensal)?</label>
-                        <div class="scale-buttons" id="q10-buttons"></div>
-                    </div>
+                <div class="scale-question">
+                    <label>Decisões seguem direção clara?</label>
+                    <div class="scale-buttons" id="q3"></div>
                 </div>
-
-                <!-- INDICADORES -->
-                <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0;">
-                    <h3 style="color: #1a1a2e; margin-bottom: 20px; font-size: 16px; font-weight: 700;">INDICADORES</h3>
-                    
-                    <div class="scale-question">
-                        <label>Sua empresa possui indicadores claros para cada área?</label>
-                        <div class="scale-buttons" id="q11-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Você confia nos dados usados para tomar decisão?</label>
-                        <div class="scale-buttons" id="q12-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>As reuniões são baseadas em indicadores ou mais em percepção/opinião?</label>
-                        <div class="scale-buttons" id="q13-buttons"></div>
-                    </div>
+                <div class="scale-question">
+                    <label>Consegue prever faturamento do próximo mês?</label>
+                    <div class="scale-buttons" id="q4"></div>
                 </div>
-
-                <!-- PROCESSOS -->
-                <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0;">
-                    <h3 style="color: #1a1a2e; margin-bottom: 20px; font-size: 16px; font-weight: 700;">PROCESSOS</h3>
-                    
-                    <div class="scale-question">
-                        <label>Os processos principais estão mapeados e padronizados?</label>
-                        <div class="scale-buttons" id="q14-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Existe controle de qualidade e redução de retrabalho?</label>
-                        <div class="scale-buttons" id="q15-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>A empresa utiliza tecnologia ou automação para ganhar eficiência?</label>
-                        <div class="scale-buttons" id="q16-buttons"></div>
-                    </div>
+                <div class="scale-question">
+                    <label>Rotina comercial estruturada?</label>
+                    <div class="scale-buttons" id="q5"></div>
                 </div>
-
-                <!-- GOVERNANÇA -->
-                <div style="margin-bottom: 30px;">
-                    <h3 style="color: #1a1a2e; margin-bottom: 20px; font-size: 16px; font-weight: 700;">GOVERNANÇA</h3>
-                    
-                    <div class="scale-question">
-                        <label>Existem reuniões de gestão estruturadas (com pauta, dados e decisões)?</label>
-                        <div class="scale-buttons" id="q17-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>Existe clareza de papéis e responsabilidades dentro da empresa?</label>
-                        <div class="scale-buttons" id="q18-buttons"></div>
-                    </div>
-
-                    <div class="scale-question">
-                        <label>As decisões tomadas são acompanhadas até a execução?</label>
-                        <div class="scale-buttons" id="q19-buttons"></div>
-                    </div>
+                <div class="scale-question">
+                    <label>Metas claras e acompanhamento?</label>
+                    <div class="scale-buttons" id="q6"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Trabalha base de clientes (retenção)?</label>
+                    <div class="scale-buttons" id="q7"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Metas desdobradas por área?</label>
+                    <div class="scale-buttons" id="q8"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Plano de ação para desvios?</label>
+                    <div class="scale-buttons" id="q9"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Acompanhamento frequente de metas?</label>
+                    <div class="scale-buttons" id="q10"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Indicadores claros por área?</label>
+                    <div class="scale-buttons" id="q11"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Confia nos dados para decisão?</label>
+                    <div class="scale-buttons" id="q12"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Reuniões baseadas em indicadores?</label>
+                    <div class="scale-buttons" id="q13"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Processos mapeados e padronizados?</label>
+                    <div class="scale-buttons" id="q14"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Controle de qualidade?</label>
+                    <div class="scale-buttons" id="q15"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Usa tecnologia/automação?</label>
+                    <div class="scale-buttons" id="q16"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Reuniões estruturadas?</label>
+                    <div class="scale-buttons" id="q17"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Clareza de papéis e responsabilidades?</label>
+                    <div class="scale-buttons" id="q18"></div>
+                </div>
+                <div class="scale-question">
+                    <label>Acompanha decisões até execução?</label>
+                    <div class="scale-buttons" id="q19"></div>
                 </div>
             </div>
 
-            <!-- STEP 5: PERGUNTAS ABERTAS -->
+            <!-- STEP 5 -->
             <div class="step" data-step="5">
                 <div class="step-title">Sua percepção</div>
-                <div class="step-subtitle">Últimas perguntas para personalizarmos seu diagnóstico</div>
-
+                <div class="step-subtitle">Últimas perguntas</div>
                 <div class="form-group">
-                    <label for="gargalo">Qual é o principal gargalo que limita o crescimento da sua empresa?</label>
-                    <textarea id="gargalo" required></textarea>
+                    <label>Principal gargalo que limita crescimento:</label>
+                    <textarea id="gargalo"></textarea>
                 </div>
-
                 <div class="form-group">
-                    <label for="perda_dinheiro">Onde você sente que mais perde dinheiro hoje?</label>
-                    <textarea id="perda_dinheiro" required></textarea>
+                    <label>Onde você perde mais dinheiro:</label>
+                    <textarea id="perda"></textarea>
                 </div>
-
                 <div class="form-group">
-                    <label for="preocupacao">O que mais te preocupa na gestão da empresa atualmente?</label>
-                    <textarea id="preocupacao" required></textarea>
+                    <label>O que mais te preocupa:</label>
+                    <textarea id="preocupacao"></textarea>
                 </div>
             </div>
 
-            <!-- STEP 6: CONFIRMAÇÃO -->
+            <!-- STEP 6 -->
             <div class="step" data-step="6">
-                <div class="step-intro">
-                    <h2>Quase pronto!</h2>
-                    <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">Com base nas suas respostas, vamos gerar um diagnóstico completo com:</p>
-                    <ul>
-                        <li>Seu nível de gestão atual</li>
-                        <li>Principais gargalos</li>
-                        <li>Oportunidades claras de crescimento</li>
-                    </ul>
-                    <p style="color: #666; margin-top: 20px;">O diagnóstico será enviado para seu email em poucos minutos.</p>
+                <div class="success">
+                    <h2>✅ Enviado com Sucesso!</h2>
+                    <p style="margin-top: 10px;">Verifique seu email para receber o diagnóstico completo.</p>
                 </div>
             </div>
 
-            <!-- SUCCESS MESSAGE -->
-            <div class="step" data-step="7">
-                <div class="success-message">
-                    <h2 style="margin-bottom: 10px;">✅ Diagnóstico Enviado!</h2>
-                    <p>Verifique seu email para receber o diagnóstico completo.</p>
-                </div>
-            </div>
-
-            <!-- BUTTON GROUP -->
-            <div class="button-group" id="buttonGroup">
-                <button type="button" class="btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">Voltar</button>
-                <button type="button" class="btn-primary" id="nextBtn" onclick="changeStep(1)">Começar</button>
+            <!-- BUTTONS -->
+            <div class="button-group">
+                <button class="btn-secondary" id="prevBtn" onclick="prev()" style="display:none;">← Voltar</button>
+                <button class="btn-primary" id="nextBtn" onclick="next()">Começar</button>
             </div>
         </div>
     </div>
 
     <script>
-        let currentStep = 1;
-        const totalSteps = 7;
-        const answers = {};
+        let step = 1;
+        let answers = {};
 
-        // Criar botões de escala
         function createScaleButtons() {
             for (let i = 1; i <= 19; i++) {
-                const container = document.getElementById(`q${i}-buttons`);
-                if (container) {
-                    for (let j = 0; j <= 5; j++) {
-                        const btn = document.createElement('button');
-                        btn.type = 'button';
-                        btn.className = 'scale-btn';
-                        btn.textContent = j;
-                        btn.onclick = (e) => {
-                            e.preventDefault();
-                            selectScale(i, j, container);
-                        };
-                        container.appendChild(btn);
-                    }
+                const container = document.getElementById(`q${i}`);
+                for (let j = 0; j <= 5; j++) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'scale-btn';
+                    btn.textContent = j;
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        answers[`q${i}`] = j;
+                        container.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+                        btn.classList.add('selected');
+                    };
+                    container.appendChild(btn);
                 }
             }
         }
 
-        function selectScale(questionNum, value, container) {
-            answers[`q${questionNum}`] = value;
-            
-            // Remover active de todos os botões
-            container.querySelectorAll('.scale-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Adicionar active ao selecionado
-            container.querySelectorAll('.scale-btn')[value].classList.add('active');
-        }
-
-        function updateProgress() {
-            const progress = (currentStep / totalSteps) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-
-        function showStep(step) {
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+        function updateUI() {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.querySelector(`[data-step="${step}"]`).classList.add('active');
             
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+            const progress = (step / 6) * 100;
+            document.getElementById('progress').style.width = progress + '%';
             
-            prevBtn.style.display = step > 1 ? 'block' : 'none';
-            
-            const labels = ['', 'Começar', 'Próximo', 'Próximo', 'Próximo', 'Próximo', 'Receber meu diagnóstico', ''];
-            nextBtn.textContent = labels[step] || 'Próximo';
-            nextBtn.style.display = step === 7 ? 'none' : 'block';
-            
-            updateProgress();
+            document.getElementById('prevBtn').style.display = step > 1 ? 'block' : 'none';
+            const labels = ['', 'Começar', 'Próximo', 'Próximo', 'Próximo', 'Próximo', ''];
+            document.getElementById('nextBtn').textContent = labels[step] || 'Próximo';
+            document.getElementById('nextBtn').style.display = step === 6 ? 'none' : 'block';
         }
 
-        function validateStep(step) {
+        function validate() {
             if (step === 2) {
                 return document.getElementById('faturamento').value && 
                        document.getElementById('colaboradores').value && 
@@ -717,34 +391,34 @@
             }
             if (step === 5) {
                 return document.getElementById('gargalo').value && 
-                       document.getElementById('perda_dinheiro').value && 
+                       document.getElementById('perda').value && 
                        document.getElementById('preocupacao').value;
             }
             return true;
         }
 
-        function changeStep(direction) {
-            const nextStep = currentStep + direction;
-            
-            if (direction === 1) {
-                if (!validateStep(currentStep)) {
-                    alert('Por favor, preencha todos os campos obrigatórios');
-                    return;
-                }
-                
-                if (nextStep > totalSteps) return;
+        function next() {
+            if (!validate()) {
+                alert('Por favor, preencha todos os campos');
+                return;
             }
-            
-            if (nextStep >= 1 && nextStep <= totalSteps) {
-                currentStep = nextStep;
-                showStep(currentStep);
+            if (step < 6) {
+                step++;
+                updateUI();
                 window.scrollTo(0, 0);
             }
         }
 
-        // Inicializar
+        function prev() {
+            if (step > 1) {
+                step--;
+                updateUI();
+                window.scrollTo(0, 0);
+            }
+        }
+
         createScaleButtons();
-        showStep(currentStep);
+        updateUI();
     </script>
 </body>
 </html>

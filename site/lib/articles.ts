@@ -42,6 +42,7 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; content:
  * e as páginas permanecem 100% estáticas (compatível com cacheComponents).
  */
 function load(): Article[] {
+  if (!fs.existsSync(DIR)) return [];
   return fs
     .readdirSync(DIR)
     .filter((f) => f.endsWith(".md"))
@@ -62,6 +63,8 @@ function load(): Article[] {
         html: marked.parse(content, { async: false }) as string,
       } satisfies Article;
     })
+    // Só artigos publicados vão para o site; rascunhos ficam em content/rascunhos/.
+    .filter((a) => a.status === "publicado")
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.title.localeCompare(b.title)));
 }
 
@@ -69,6 +72,11 @@ const articles = load();
 
 export function getArticles() {
   return articles;
+}
+
+/** A área Conhecimento só aparece (menu, rodapé, home, sitemap) quando há artigo publicado. */
+export function hasArticles() {
+  return articles.length > 0;
 }
 
 export function getArticle(slug: string) {

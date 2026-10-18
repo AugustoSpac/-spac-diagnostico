@@ -48,6 +48,7 @@ Não criar card com barra colorida no topo. Não repetir o mesmo card em 3 seç�
 - **Header** (`components/layout/Header.tsx`): transparente sobre o hero escuro, sólido off-white com blur após 24 px de rolagem, esconde ao rolar para baixo (> 360 px) e volta ao rolar para cima. Link ativo com sublinhado; CTA "Iniciar conversa" sempre visível no desktop.
 - **Menu mobile**: tela cheia âmbar, links grandes com seta, foco no primeiro link, `Esc` fecha e devolve o foco, conteúdo de trás fica `inert`, rolagem travada.
 - **Footer**: logo `dark-bg`, posicionamento, colunas Soluções / Empresa / Contato, privacidade. E-mail e LinkedIn só aparecem se configurados.
+- **Itens condicionais**: "Conhecimento" só aparece no menu, rodapé, home e sitemap quando há artigo publicado (`hasArticles()`; o menu recebe `nav` do layout).
 - Ordem do menu: Soluções · Metodologia · Cases · Conhecimento · Sobre · [Iniciar conversa].
 
 ## Gráfico de assinatura: trajetória

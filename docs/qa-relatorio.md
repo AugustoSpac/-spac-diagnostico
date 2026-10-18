@@ -14,7 +14,7 @@ Ambiente: build de produção (`next build` + `next start`), Chromium headless v
 |---|---|
 | Lint (ESLint) e tipos (TypeScript) | Sem erros |
 | Build de produção | 28 rotas estáticas; só a API `/api/contato` é dinâmica |
-| Status HTTP | Todas as páginas 200; rota inexistente 404 real |
+| Status HTTP | Todas as páginas 200; rota inexistente 404. Em rotas dinâmicas (`/cases/x`, `/solucoes/x`, `/conhecimento/x`), endereço desconhecido mostra a página "não encontrada" com `noindex` (comportamento do Next 16, resposta 200) |
 | Erros de console | Nenhum |
 | Estouro horizontal | Nenhum nas 3 larguras (após a correção 4 abaixo) |
 | Links internos | 16 rotas únicas verificadas, nenhuma quebrada |
@@ -45,3 +45,12 @@ Ambiente: build de produção (`next build` + `next start`), Chromium headless v
 - Não foi possível testar o envio real de e-mail, porque não há credenciais da Resend.
 - Testes feitos em Chromium; Safari e Firefox ainda não foram verificados. Recomenda-se checar no iPhone antes de publicar.
 - As 5 vulnerabilidades "high" que restam no `npm audit` completo estão só em ferramentas de desenvolvimento (não vão para o site publicado).
+
+## Versão de publicação (revisão 2)
+
+- Clientes anonimizados (case "Rede varejista do setor alimentar", URL `/cases/varejo-alimentar`); case sem dados completos retirado da listagem e mantido como resultado anônimo do portfólio.
+- Artigos-rascunho movidos para `site/content/rascunhos/`; a área Conhecimento saiu do menu, rodapé, home e sitemap até haver artigo publicado (a página `/conhecimento` mostra "em preparação").
+- Selos internos visíveis só com `NEXT_PUBLIC_SHOW_PENDING=true`; retratos sem foto viram monograma.
+- Formulário sem integração: aviso "Formulário disponível em breve".
+- Indicadores: unidades menores que o número para evitar quebra de linha.
+- Verificado: nenhuma página publicada contém nome de cliente ou selo interno; sem estouro horizontal em 390 e 1440 px; build, lint e tipos sem erros.

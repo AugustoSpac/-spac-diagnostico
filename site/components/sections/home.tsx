@@ -7,7 +7,7 @@ import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { CountUp } from "@/components/ui/CountUp";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { Em, SectionHeader } from "@/components/ui/SectionHeader";
-import { cases, upcomingCases } from "@/content/cases";
+import { cases, portfolioResults, upcomingCases } from "@/content/cases";
 import {
   credibilityStats,
   differentials,
@@ -112,7 +112,8 @@ export function Credibility({ index = "01" }: { index?: string }) {
           <p className="t-kicker text-gray-600 md:col-span-3">Experiência construída em</p>
           <div className="md:col-span-9">
             <p className="text-[clamp(1.375rem,1.1rem+1vw,2rem)] leading-snug font-extrabold tracking-[-0.02em] text-graphite-900">
-              Grupo Supernosso <span className="font-normal text-gray-500">·</span> Expand Bebidas{" "}
+              Varejo alimentar <span className="font-normal text-gray-500">·</span> Bebidas{" "}
+              <span className="font-normal text-gray-500">·</span> Distribuição{" "}
               <span className="font-normal text-gray-500">·</span>{" "}
               <span className="font-normal text-graphite-700">
                 liderança C-level em empresas de R$ 4 bi e R$ 5 bi de faturamento
@@ -218,7 +219,29 @@ export function CasesShowcase() {
                 <CaseCard item={c} />
               </Reveal>
             ))}
-            {upcomingCases.slice(0, 1).map((u) => (
+            <Reveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-card border border-gray-200 bg-white p-6 md:p-7">
+                <p className="t-kicker text-gray-600">Outros resultados do portfólio</p>
+                <ul className="mt-5 border-t border-gray-200">
+                  {portfolioResults.map((r) => (
+                    <li key={r} className="flex gap-3 border-b border-gray-200 py-3.5 text-[0.9875rem] text-graphite-900">
+                      <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 bg-gold" />
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-5 text-sm text-gray-600">
+                  Clientes não identificados por confidencialidade.
+                </p>
+                <TextLink
+                  href="/cases"
+                  className="mt-auto pt-8 text-[0.9375rem] text-graphite-900 hover:text-gold-text"
+                >
+                  Ver cases
+                </TextLink>
+              </div>
+            </Reveal>
+            {upcomingCases.slice(0, rest.length > 0 ? 1 : 0).map((u) => (
               <Reveal key={u.sector} delay={0.2}>
                 <UpcomingCaseCard {...u} />
               </Reveal>

@@ -11,7 +11,9 @@ import { breadcrumbLd, JsonLd, pageMetadata } from "@/lib/seo";
 export const instant = false;
 
 export function generateStaticParams() {
-  return getArticles().map((a) => ({ slug: a.slug }));
+  const params = getArticles().map((a) => ({ slug: a.slug }));
+  // O Next 16 exige ao menos um parâmetro; sem artigo publicado, a rota responde 404.
+  return params.length > 0 ? params : [{ slug: "em-breve" }];
 }
 
 export async function generateMetadata({ params }: PageProps<"/conhecimento/[slug]">) {

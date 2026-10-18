@@ -38,10 +38,11 @@ export function CountUp({
 
   return (
     <span ref={ref} className={className}>
-      <span aria-hidden="true">
-        {prefix}
+      <span aria-hidden="true" className="whitespace-nowrap">
+        {/* Unidades menores que o número: leitura editorial e sem quebra de linha */}
+        {prefix && <span className="mr-[0.08em] text-[0.5em] tracking-[-0.01em]">{prefix.trim()}</span>}
         {display.toLocaleString("pt-BR")}
-        {suffix}
+        {suffix && <span className="ml-[0.12em] text-[0.5em] tracking-[-0.01em]">{suffix.trim()}</span>}
       </span>
       <span className="sr-only">
         {prefix}

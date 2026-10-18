@@ -137,11 +137,10 @@ export function ContactForm({ enabled, fallbackEmail }: { enabled: boolean; fall
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="rounded-card border border-gray-200 bg-white p-6 md:p-10">
       {!enabled && (
-        <div role="note" className="mb-8 rounded-card border border-negative/40 bg-white p-5 text-[0.9375rem] text-graphite-900">
-          <p className="font-extrabold text-negative">Envio pelo site ainda não ativado</p>
+        <div role="note" className="mb-8 rounded-card border border-gold bg-gold-veil p-5 text-[0.9375rem] text-graphite-900">
+          <p className="font-extrabold text-graphite-900">Formulário disponível em breve</p>
           <p className="mt-1.5 text-graphite-700">
-            A integração de envio será configurada antes da publicação. Os campos abaixo mostram o
-            formulário final.
+            Estamos finalizando o envio de mensagens por este formulário.
             {fallbackEmail && (
               <>
                 {" "}Enquanto isso, escreva para{" "}
@@ -243,7 +242,7 @@ export function ContactForm({ enabled, fallbackEmail }: { enabled: boolean; fall
             type="submit"
             className={`${buttonClass("dark")} whitespace-normal text-left disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-graphite-700`}
           >
-            {status === "sending" ? "Enviando…" : enabled ? "Enviar mensagem" : "Envio indisponível na pré-visualização"}
+            {status === "sending" ? "Enviando…" : enabled ? "Enviar mensagem" : "Envio disponível em breve"}
             {enabled && status !== "sending" && <ArrowRight size={18} />}
           </button>
           <p className="text-sm text-gray-600">* Campos obrigatórios</p>

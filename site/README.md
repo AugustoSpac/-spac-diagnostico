@@ -41,10 +41,11 @@ Requisito: Node.js 20.9 ou superior.
 | Frentes e serviços | `content/solutions.ts` |
 | Cases | `content/cases.ts` |
 | Método, valores, sócios, indicadores, desafios, diferenciais | `content/institutional.ts` |
-| Artigos | `content/conhecimento/*.md` (copie um arquivo existente e ajuste o frontmatter) |
+| Artigos publicados | `content/conhecimento/*.md` (só `status: "publicado"`) |
+| Rascunhos de artigos | `content/rascunhos/*.md` (não aparecem no site) |
 | Fotos dos sócios | Coloque em `public/team/` e preencha `photo` em `content/institutional.ts` |
 
-Conteúdos não validados aparecem com o selo **"Conteúdo a validar"** (`pending: true`) ou **"Rascunho editorial"** (`status: "rascunho"`). Remova a marcação ao aprovar o texto.
+Clientes aparecem de forma anônima (por setor). Selos internos como "Conteúdo a validar" só aparecem com `NEXT_PUBLIC_SHOW_PENDING=true` (use no ambiente de Preview da Vercel). Sem artigo publicado, a área Conhecimento sai do menu e da home automaticamente.
 
 ## Variáveis de ambiente
 
@@ -54,6 +55,7 @@ Veja `.env.example`. Resumo:
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | URL canônica (sitemap, Open Graph) |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | `true` libera indexação. **Padrão: bloqueado** (pré-visualização) |
+| `NEXT_PUBLIC_SHOW_PENDING` | `true` mostra os selos internos de conteúdo pendente (só para revisão) |
 | `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_LINKEDIN_URL` | Exibidos no rodapé/contato quando preenchidos |
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Ativam o envio do formulário via Resend. Sem as três, o formulário aparece em modo pré-visualização com o envio desativado |
 

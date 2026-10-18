@@ -2,14 +2,14 @@
 
 ## Stack
 
-Next.js **16** (App Router, Turbopack, `cacheComponents: true`, `partialPrefetching: true`) · React 19 · Tailwind CSS **v4** (`@theme` em `globals.css`) · Motion 14 (`motion/react`) · gray-matter + marked (artigos) · Node ≥ 20.9.
+Next.js **16** (App Router, Turbopack, `cacheComponents: true`, `partialPrefetching: true`) · React 19 · Tailwind CSS **v4** (`@theme` em `globals.css`) · Motion 14 (`motion/react`) · marked + frontmatter próprio (artigos) · Node ≥ 20.9.
 
 > Next 16 tem mudanças relevantes. Leia `site/node_modules/next/dist/docs/` antes de usar APIs novas (ver `site/AGENTS.md`).
 
 ## Armadilhas do Next 16 com Cache Components
 
 - `params` é **Promise**: `const { slug } = await params`. Tipos globais `PageProps<"/rota/[slug]">` e `LayoutProps<"/">`.
-- Rotas `[slug]`: `generateStaticParams` (nunca vazio) + `export const instant = false` + `notFound()` → slugs conhecidos estáticos, desconhecidos 404 real. **Não** usar `dynamic`, `revalidate`, `dynamicParams`, `runtime`.
+- Rotas `[slug]`: `generateStaticParams` (nunca vazio; sem itens, devolver um slug sentinela que cai em `notFound()`) + `export const instant = false` + `notFound()` → slugs conhecidos estáticos; desconhecidos mostram a página "não encontrada" com `noindex` (o Next 16 responde 200 nesse caso; rotas fora de `[slug]` respondem 404). **Não** usar `dynamic`, `revalidate`, `dynamicParams`, `runtime`.
 - `usePathname` em layout compartilhado precisa de `<Suspense>` (ver `HeaderWithPath`).
 - `new Date()`/`Date.now()` em Server Component quebra o build: usar função com `"use cache"` (ver `CurrentYear` no Footer).
 - Leitura de arquivos: síncrona em escopo de módulo (`lib/articles.ts`), ou dentro de `"use cache"`.
@@ -42,7 +42,7 @@ Evolução recomendada quando o volume crescer: CMS headless (Sanity, Payload ou
 
 ## Variáveis de ambiente (`site/.env.example`)
 
-`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_ALLOW_INDEXING`, `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_LINKEDIN_URL`, `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`. Variáveis `NEXT_PUBLIC_*` são embutidas no build: alterou, faça novo deploy.
+`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_ALLOW_INDEXING`, `NEXT_PUBLIC_SHOW_PENDING` (selos internos, só em Preview), `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_LINKEDIN_URL`, `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`. Variáveis `NEXT_PUBLIC_*` são embutidas no build: alterou, faça novo deploy.
 
 ## Deploy (Vercel)
 

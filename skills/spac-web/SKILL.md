@@ -52,7 +52,7 @@ site/                      Next.js 16 (App Router, cacheComponents) + Tailwind v
 6. **Título-conclusão em peso misto**: regular + `<Em>` (ExtraBold). Máx. 3 linhas no desktop.
 7. **Régua**: todo cabeçalho de seção usa `SectionHeader` (kicker numerado + régua de linha única).
 8. **Ouro é bisturi (~5%)**: um destaque dourado por bloco. Card em destaque = borda gold + fundo gold-veil, sem barra de topo.
-9. **Nunca inventar dados**: números, clientes, depoimentos e logos só com fonte. Placeholder sempre sinalizado com `PendingBadge`.
+9. **Nunca inventar dados**: números, clientes, depoimentos e logos só com fonte. Clientes anônimos por padrão. Placeholder só na pré-visualização (`PendingBadge`); no site publicado, omitir.
 10. **Nenhum link ou botão falso**: todo link leva a uma rota existente; o formulário só se apresenta como funcional com a integração configurada.
 11. **Movimento respeita `prefers-reduced-motion`** e nunca esconde conteúdo sem JS (hero anima por CSS; seções usam `Reveal`).
 12. **Sem emojis, sem gradientes decorativos, sem sombras pesadas, sem ícones genéricos por seção.** A assinatura gráfica é a **trajetória** (o traço da estrela do logo).
@@ -62,8 +62,8 @@ site/                      Next.js 16 (App Router, cacheComponents) + Tailwind v
 
 - **Página nova:** `PageHero` (escuro) → 2–4 seções alternando `bg-paper`/`bg-white`/escuro → `CtaBand`. Registrar a rota em `app/sitemap.ts` e, se for de menu, em `content/site.ts`.
 - **Case novo:** adicionar objeto em `content/cases.ts` (contexto, desafio, solução, resultados, fonte, `artSeed` único, `needsClientApproval`). A página e o card são gerados.
-- **Artigo novo:** arquivo `.md` em `content/conhecimento/` com frontmatter (`title`, `excerpt`, `category`, `date`, `author`, `status`, `artSeed`). `status: "rascunho"` exibe o selo de rascunho.
-- **Foto pendente:** moldura circular com `foto-placeholder-claro.png` + `PendingBadge`, nunca retângulo vazio.
+- **Artigo novo:** rascunho em `content/rascunhos/`; para publicar, `status: "publicado"` e mover para `content/conhecimento/`. Só artigos publicados aparecem no site.
+- **Foto pendente:** monograma com as iniciais em círculo âmbar com anel dourado (automático quando `photo` é nulo), nunca retângulo vazio.
 - **Imagem de capa sem foto real:** `TrajectoryArt` com `seed` novo. Fotos reais: cor natural, sem filtro dourado, overlay `ink` 55–70% quando houver texto por cima.
 
 ## Referências (carregue sob demanda)

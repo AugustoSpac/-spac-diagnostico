@@ -40,10 +40,10 @@ Executivo, seguro, objetivo, inteligente. Frases curtas, voz ativa, verbos concr
 ## Dados e provas — regra de ouro
 
 - **Nunca inventar** clientes, logos, depoimentos, números, prazos ou datas.
-- Todo número leva unidade e contexto ("R$ 500 mi em ganhos de gestão no Grupo Supernosso") e, quando aplicável, a nota de fonte.
+- Todo número leva unidade e contexto ("R$ 500 mi em ganhos de gestão em uma rede do varejo alimentar") e, quando aplicável, a nota de fonte.
 - Resultados da trajetória dos sócios em empregos anteriores são apresentados como **trajetória executiva**, não como case da SPAC.
-- Cases com nome do cliente exigem **autorização formal** (`needsClientApproval`). Alternativa: anonimizar ("Rede varejista do setor alimentar").
-- Placeholder sempre visível com `PendingBadge`. Remover o selo só quando o conteúdo for validado.
+- **Padrão do site: clientes anônimos**, identificados por setor ("Rede varejista do setor alimentar"). Citar o nome só com autorização formal (`needsClientApproval: true`).
+- Conteúdo não validado leva `PendingBadge` (visível só com `NEXT_PUBLIC_SHOW_PENDING=true`, na pré-visualização). No site publicado, conteúdo sem dado real não entra: prefira omitir a mostrar placeholder.
 - Números: padrão brasileiro (vírgula decimal, "R$ 4,2 mi", "30×", "+4,2 p.p.").
 
 ## Estrutura de case
@@ -51,6 +51,8 @@ Executivo, seguro, objetivo, inteligente. Frases curtas, voz ativa, verbos concr
 Cliente · setor · frentes → **Contexto** → **Desafio** → **Solução** (bullets) → **Resultados** (KPIs com contexto) → fonte. Título no formato de conclusão: "[Resultado] em/no [contexto]".
 
 ## Artigos
+
+Rascunhos ficam em `site/content/rascunhos/` (fora do site). Publicar = `status: "publicado"` + mover para `site/content/conhecimento/`. Sem artigo publicado, a área Conhecimento sai do menu, do rodapé, da home e do sitemap automaticamente.
 
 Frontmatter: `title`, `excerpt` (≤ 200 caracteres), `category` (Estratégia, Performance, Transformação, Gestão), `date` (AAAA-MM-DD), `author`, `status` (`rascunho` | `publicado`), `artSeed`. Intertítulos `##`, listas curtas, um parágrafo = uma ideia. Fechar com aplicação prática ("Por onde começar").
 

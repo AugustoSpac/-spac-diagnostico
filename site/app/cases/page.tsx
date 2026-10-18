@@ -31,7 +31,9 @@ export default function CasesPage() {
           <Reveal>
             <CaseCard item={cases[0]} size="wide" />
           </Reveal>
-          <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            className={`mt-5 grid gap-5 md:grid-cols-2 ${cases.length - 1 + upcomingCases.length >= 3 ? "lg:grid-cols-3" : ""}`}
+          >
             {cases.slice(1).map((c, i) => (
               <Reveal key={c.slug} delay={i * 0.08}>
                 <CaseCard item={c} />

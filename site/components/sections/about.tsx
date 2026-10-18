@@ -132,13 +132,27 @@ function PartnerCard({ p }: { p: Partner }) {
     <article className="flex h-full flex-col rounded-card border border-gray-200 bg-white p-7 md:p-9">
       <div className="flex items-center gap-6">
         <div className="relative size-24 shrink-0 rounded-full p-[3px] ring-[1.25px] ring-gold md:size-28">
-          <Image
-            src={p.photo ?? "/brand/foto-placeholder-claro.png"}
-            alt={p.photo ? `Foto de ${p.name}` : ""}
-            width={224}
-            height={224}
-            className="size-full rounded-full object-cover"
-          />
+          {p.photo ? (
+            <Image
+              src={p.photo}
+              alt={`Foto de ${p.name}`}
+              width={224}
+              height={224}
+              className="size-full rounded-full object-cover"
+            />
+          ) : (
+            // Sem foto: monograma com as iniciais, no padrão da marca
+            <span
+              aria-hidden="true"
+              className="bg-spac-dark flex size-full items-center justify-center rounded-full text-[1.75rem] font-extrabold tracking-[-0.02em] text-champagne md:text-[2rem]"
+            >
+              {p.name
+                .split(" ")
+                .map((w) => w[0])
+                .slice(0, 2)
+                .join("")}
+            </span>
+          )}
         </div>
         <div>
           <h3 className="t-h3 text-graphite-900">{p.name}</h3>

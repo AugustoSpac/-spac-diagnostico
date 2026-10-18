@@ -2,11 +2,11 @@ import type { MetadataRoute } from "next";
 import { cases } from "@/content/cases";
 import { site } from "@/content/site";
 import { solutions } from "@/content/solutions";
-import { getArticles } from "@/lib/articles";
+import { getArticles, hasArticles } from "@/lib/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const u = (p: string) => `${site.url}${p}`;
-  const staticPaths = ["/", "/sobre", "/metodologia", "/solucoes", "/cases", "/conhecimento", "/contato", "/privacidade"];
+  const staticPaths = ["/", "/sobre", "/metodologia", "/solucoes", "/cases", ...(hasArticles() ? ["/conhecimento"] : []), "/contato", "/privacidade"];
   return [
     ...staticPaths.map((p) => ({ url: u(p), priority: p === "/" ? 1 : 0.8 })),
     ...solutions.map((s) => ({ url: u(`/solucoes/${s.slug}`), priority: 0.8 })),

@@ -1,7 +1,8 @@
 /**
  * Cases.
  * Regra: nunca inventar resultados. Métricas vêm do material institucional oficial (spac-decks).
- * Campos ainda não validados ficam com `pending: true` e aparecem sinalizados no site.
+ * Clientes são apresentados de forma anônima (por setor) até haver autorização formal para citar o nome.
+ * Campos ainda não validados podem receber `pending: true` (selo visível só em pré-visualização).
  */
 export type CaseMetric = { value: string; label: string; context?: string };
 
@@ -9,6 +10,7 @@ export type CaseField = { text: string; pending?: boolean };
 
 export type CaseStudy = {
   slug: string;
+  /** Identificação pública do cliente (anônima, por setor, sem autorização para citar o nome). */
   client: string;
   sector: string;
   fronts: Array<"estrategia" | "performance" | "transformacao">;
@@ -19,29 +21,26 @@ export type CaseStudy = {
   challenge: CaseField;
   solution: { items: string[]; pending?: boolean };
   results: CaseMetric[];
-  otherResults?: string[];
   source?: string;
   /** Semente da arte de capa (TrajectoryArt). */
   artSeed: number;
-  /** Publicação depende de autorização formal do cliente. */
+  /** true = cita o nome do cliente; exige autorização formal antes de publicar. */
   needsClientApproval: boolean;
 };
 
 export const cases: CaseStudy[] = [
   {
-    slug: "grupo-supernosso",
-    client: "Grupo Supernosso",
+    slug: "varejo-alimentar",
+    client: "Rede varejista do setor alimentar",
     sector: "Varejo alimentar",
     fronts: ["performance", "transformacao", "estrategia"],
     title: "R$ 500 milhões em ganhos de gestão no varejo alimentar",
     headline: { value: "R$ 500 mi", label: "em ganhos de gestão" },
     context: {
       text: "Grupo varejista do setor alimentar, com operação em múltiplos canais e frentes simultâneas de crescimento.",
-      pending: true,
     },
     challenge: {
       text: "Crescer com ganho de margem e eficiência enquanto o grupo expandia canais digitais, relacionamento com clientes e operações de M&A.",
-      pending: true,
     },
     solution: {
       items: [
@@ -65,27 +64,10 @@ export const cases: CaseStudy[] = [
       },
       { value: "10×", label: "crescimento em M&A", context: "3 operações concluídas" },
     ],
-    source: "Fonte: apuração do cliente. Ganhos acumulados em vendas, margem, despesas e perdas.",
+    source:
+      "Fonte: apuração do cliente. Ganhos acumulados em vendas, margem, despesas e perdas. Cliente não identificado por confidencialidade.",
     artSeed: 7,
-    needsClientApproval: true,
-  },
-  {
-    slug: "expand-bebidas",
-    client: "Expand Bebidas",
-    sector: "Bebidas",
-    fronts: ["performance"],
-    title: "Gestão transformada em seis meses",
-    headline: { value: "6 meses", label: "para transformar a gestão" },
-    context: { text: "Contexto do cliente a ser fornecido pela SPAC.", pending: true },
-    challenge: { text: "Desafio do projeto a ser fornecido pela SPAC.", pending: true },
-    solution: {
-      items: ["Escopo e frentes do trabalho a serem fornecidos pela SPAC."],
-      pending: true,
-    },
-    results: [{ value: "6 meses", label: "para transformar a gestão" }],
-    source: "Fonte: material institucional SPAC.",
-    artSeed: 23,
-    needsClientApproval: true,
+    needsClientApproval: false,
   },
 ];
 
@@ -95,12 +77,12 @@ export const upcomingCases = [
   { sector: "Distribuição", note: "Case em preparação" },
 ];
 
-/** Resultados adicionais do portfólio (material institucional oficial). */
+/** Resultados adicionais do portfólio (material institucional oficial), sem identificar clientes. */
 export const portfolioResults = [
   "Aumento de 1000% na arrecadação de verbas de fornecedores",
   "Mais de R$ 600 mi em valor gerado por ganhos de gestão",
   "Aumento de 300% na base de clientes ativos via CRM",
-  "Gestão transformada em 6 meses na Expand Bebidas",
+  "Gestão transformada em 6 meses em uma empresa do setor de bebidas",
 ];
 
 export function getCase(slug: string) {

@@ -61,7 +61,7 @@ export const solutions: Solution[] = [
       "Portfólio de iniciativas priorizadas",
       "Calendário de rituais de acompanhamento",
     ],
-    relatedCases: ["grupo-supernosso"],
+    relatedCases: ["varejo-alimentar"],
   },
   {
     slug: "performance",
@@ -115,7 +115,7 @@ export const solutions: Solution[] = [
       "Processos críticos redesenhados e padronizados",
       "Plano de captura de ganhos com acompanhamento",
     ],
-    relatedCases: ["grupo-supernosso", "expand-bebidas"],
+    relatedCases: ["varejo-alimentar"],
   },
   {
     slug: "transformacao",
@@ -164,7 +164,7 @@ export const solutions: Solution[] = [
       "Casos de uso de IA priorizados por retorno",
       "Plano de mudança com acompanhamento da implantação",
     ],
-    relatedCases: ["grupo-supernosso"],
+    relatedCases: ["varejo-alimentar"],
   },
 ];
 

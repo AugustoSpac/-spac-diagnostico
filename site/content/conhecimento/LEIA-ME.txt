@@ -1,0 +1,10 @@
+Artigos publicados no site (/conhecimento).
+
+Cada artigo é um arquivo .md com frontmatter (title, excerpt, category, date, author, status, artSeed).
+Só aparecem no site os artigos com status: "publicado".
+
+Rascunhos ficam em ../rascunhos/ e não são lidos pelo site. Para publicar um rascunho:
+1. revise o texto;
+2. troque status: "rascunho" por status: "publicado";
+3. mova o arquivo para esta pasta.
+Com pelo menos um artigo publicado, a área Conhecimento volta ao menu, ao rodapé e à home automaticamente.

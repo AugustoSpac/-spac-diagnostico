@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { ctaNav, mainNav } from "@/content/site";
+import { ctaNav, type NavItem } from "@/content/site";
 import { buttonClass } from "@/components/ui/Button";
 import { ArrowRight, CloseIcon, MenuIcon } from "@/components/ui/Icons";
 import { Logo } from "./Logo";
@@ -22,7 +22,7 @@ function isActive(pathname: string | null, href: string) {
  * - Rolando para baixo esconde; rolando para cima reaparece.
  * - Mobile: menu em tela cheia, com Esc, foco gerenciado e trava de rolagem.
  */
-export function Header({ pathname }: { pathname: string | null }) {
+export function Header({ pathname, nav }: { pathname: string | null; nav: NavItem[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
@@ -112,7 +112,7 @@ export function Header({ pathname }: { pathname: string | null }) {
           </Link>
 
           <nav aria-label="Principal" className="hidden items-center gap-1 lg:flex">
-            {mainNav.map((item) => {
+            {nav.map((item) => {
               const active = isActive(pathname, item.href);
               return (
                 <Link
@@ -173,7 +173,7 @@ export function Header({ pathname }: { pathname: string | null }) {
           >
             <nav aria-label="Menu móvel" className="container-spac flex flex-1 flex-col py-10">
               <ul className="flex flex-col border-t border-amber-line">
-                {[...mainNav, { label: "Contato", href: "/contato" }].map((item, i) => (
+                {[...nav, { label: "Contato", href: "/contato" }].map((item, i) => (
                   <motion.li
                     key={item.href}
                     className="border-b border-amber-line"

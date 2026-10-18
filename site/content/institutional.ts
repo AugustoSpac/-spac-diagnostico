@@ -119,7 +119,7 @@ export const partners: Partner[] = [
 
 /** Indicadores institucionais exibidos na seção de credibilidade. */
 export const credibilityStats = [
-  { value: 500, prefix: "R$ ", suffix: " mi", label: "em ganhos de gestão no Grupo Supernosso", gold: true },
+  { value: 500, prefix: "R$ ", suffix: " mi", label: "em ganhos de gestão em uma rede do varejo alimentar", gold: true },
   { value: 30, prefix: "", suffix: "×", label: "crescimento das vendas digitais, com três e-commerces" },
   { value: 30, prefix: "", suffix: " anos", label: "de experiência executiva somada entre os sócios" },
   { value: 4, prefix: "", suffix: " países", label: "com projetos: Brasil, EUA, México e Peru" },

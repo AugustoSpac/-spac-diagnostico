@@ -1,6 +1,7 @@
 /**
- * Sinalização explícita de conteúdo não validado — evita apresentar placeholder como dado real.
- * Remover a marcação no arquivo de conteúdo quando a SPAC validar o texto.
+ * Sinalização de conteúdo não validado, para revisão interna.
+ * Visível apenas em builds com NEXT_PUBLIC_SHOW_PENDING=true (ex.: ambiente de Preview da Vercel);
+ * o site publicado nunca mostra o selo. Remover a marcação no conteúdo quando a SPAC validar o texto.
  */
 export function PendingBadge({
   children = "Conteúdo a validar",
@@ -9,6 +10,8 @@ export function PendingBadge({
   children?: string;
   tone?: "light" | "dark";
 }) {
+  // Selos são para revisão interna: só aparecem com NEXT_PUBLIC_SHOW_PENDING=true.
+  if (process.env.NEXT_PUBLIC_SHOW_PENDING !== "true") return null;
   return (
     <span
       className={[

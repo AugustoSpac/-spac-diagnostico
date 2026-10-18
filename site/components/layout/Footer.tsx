@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/content/site";
 import { solutions } from "@/content/solutions";
+import { hasArticles } from "@/lib/articles";
 import { Logo } from "./Logo";
 
 async function CurrentYear() {
@@ -13,7 +14,7 @@ const company = [
   { label: "Metodologia SPAC", href: "/metodologia" },
   { label: "Cases", href: "/cases" },
   { label: "Conhecimento", href: "/conhecimento" },
-];
+].filter((c) => c.href !== "/conhecimento" || hasArticles());
 
 export function Footer() {
   return (

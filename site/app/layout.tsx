@@ -5,7 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { HeaderWithPath } from "@/components/layout/HeaderWithPath";
 import { MotionProvider } from "@/components/layout/MotionProvider";
-import { site } from "@/content/site";
+import { mainNav, site } from "@/content/site";
+import { hasArticles } from "@/lib/articles";
 import { JsonLd } from "@/lib/seo";
 import "./globals.css";
 
@@ -68,6 +69,8 @@ const organizationLd = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  // "Conhecimento" só entra no menu quando houver artigo publicado.
+  const nav = hasArticles() ? mainNav : mainNav.filter((i) => i.href !== "/conhecimento");
   return (
     <html lang="pt-BR" className={nunito.variable} data-scroll-behavior="smooth">
       <body className="min-h-dvh">
@@ -82,8 +85,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Pular para o conteúdo
         </a>
         <MotionProvider>
-          <Suspense fallback={<Header pathname={null} />}>
-            <HeaderWithPath />
+          <Suspense fallback={<Header pathname={null} nav={nav} />}>
+            <HeaderWithPath nav={nav} />
           </Suspense>
           <main id="conteudo" tabIndex={-1} className="outline-none">
             {children}

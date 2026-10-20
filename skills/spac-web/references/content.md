@@ -48,7 +48,7 @@ Executivo, seguro, objetivo, inteligente. Frases curtas, voz ativa, verbos concr
 
 ## Estrutura de case
 
-Cliente (anônimo) · setor · frentes → **Contexto** (opcional) → **O desafio** (parágrafos) → **Nossa atuação** (abertura + frentes de trabalho numeradas, ou lista simples) → **Resultados** (KPIs com contexto + texto interpretativo) → **O diferencial SPAC** (opcional) → fonte. Os blocos se numeram sozinhos (`content/cases.ts`). Título no formato de conclusão.
+Cliente (anônimo) · setor · frentes → **Contexto** (opcional) → **O desafio** (parágrafos) → **Nossa atuação** (abertura + frentes de trabalho numeradas, ou lista simples) → **Resultados** (KPIs com contexto + ganhos qualitativos em lista, `resultsNotes` + texto interpretativo) → **O diferencial SPAC** (opcional; um ou mais parágrafos) → fonte. Os blocos se numeram sozinhos (`content/cases.ts`). Título no formato de conclusão.
 
 ## Artigos
 

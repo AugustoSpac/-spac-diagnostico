@@ -37,7 +37,7 @@ Não criar card com barra colorida no topo. Não repetir o mesmo card em 3 seç�
 | `ClientsSection` | Grade de logos (4/3/2 colunas), cores originais, área visual equilibrada pelo formato; só aparece com logos validadas em `content/clients.ts` |
 | `Problems` + `ProblemsList` | Lista editorial interativa (acordeão: hover/foco/toque) |
 | `Solutions` | Grade de 3 `SolutionCard` |
-| `CasesShowcase` | Destaque 7 col + lista 5 col |
+| `CasesShowcase` | Destaque 7 col (arte estica até a altura da coluna) + cases 5 col; com 2+ cases ao lado, "Outros resultados do portfólio" vira faixa de largura total abaixo |
 | `Differentials` | Grade 4 col sem cards + tabela "Modelo convencional × Modelo SPAC" |
 | `Methodology` + `MethodologyCycle` | Órbita S·P·A·C. Desktop: fixada e guiada pela rolagem. Mobile/movimento reduzido: abas |
 | `Insights` | Artigo destaque + lista |

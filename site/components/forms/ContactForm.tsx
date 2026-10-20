@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { buttonClass } from "@/components/ui/Button";
 import { ArrowRight, Check } from "@/components/ui/Icons";
 import {
@@ -59,14 +59,30 @@ function Field({
 
 /**
  * Formulário comercial.
- * `enabled` vem do servidor: só é true quando a integração de envio está configurada.
- * Sem integração, o formulário fica visível, mas o envio é desativado com aviso claro.
+ * Ao abrir, consulta GET /api/contato (lido em tempo real no servidor) para saber se o envio
+ * está configurado. Sem integração, o formulário fica visível, mas o envio é desativado com aviso.
  */
-export function ContactForm({ enabled, fallbackEmail }: { enabled: boolean; fallbackEmail: string | null }) {
+export function ContactForm({ fallbackEmail }: { fallbackEmail: string | null }) {
   const uid = useId();
   const id = (n: string) => `${uid}-${n}`;
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [status, setStatus] = useState<Status>(enabled ? "idle" : "unavailable");
+  const [status, setStatus] = useState<Status>("idle");
+  const enabled = status !== "unavailable";
+
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/contato", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (alive && d && d.enabled === false) setStatus("unavailable");
+      })
+      .catch(() => {
+        // Sem resposta: mantém o formulário ativo; o envio informa se algo falhar.
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
 

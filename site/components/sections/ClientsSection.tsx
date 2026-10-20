@@ -30,7 +30,7 @@ export function ClientsSection() {
           {list.map((c) => {
             // Equilíbrio óptico: área visual parecida para marcas horizontais, quadradas e verticais.
             const ratio = c.width / c.height;
-            const widthPct = Math.min(78, 38 * Math.sqrt(ratio) * (c.scale ?? 1));
+            const widthPct = Math.min(84, 50 * Math.sqrt(ratio) * (c.scale ?? 1));
             return (
               <StaggerItem key={c.name}>
                 <div className="flex aspect-[3/2] items-center justify-center rounded-card border border-gray-200 bg-white px-5 py-4 transition-colors duration-500 ease-spac hover:border-gold sm:px-8">
@@ -40,7 +40,7 @@ export function ClientsSection() {
                     width={c.width}
                     height={c.height}
                     sizes="(min-width: 1024px) 220px, (min-width: 768px) 200px, 40vw"
-                    className="h-auto max-h-[70%] object-contain"
+                    className="h-auto max-h-[74%] object-contain"
                     style={{ width: `${widthPct.toFixed(1)}%` }}
                   />
                 </div>

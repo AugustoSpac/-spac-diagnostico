@@ -1,9 +1,13 @@
 Logomarcas da seção "Clientes" (home).
 
+Arquivos atuais: recortados da imagem de referência "Onde fizemos" enviada pela SPAC
+(não são arquivos oficiais de alta resolução). Ao receber os oficiais, substitua o arquivo
+com o MESMO nome e atualize width/height em site/content/clients.ts.
+
 Coloque aqui um arquivo por cliente — SVG (preferencial) ou PNG com fundo transparente,
 versão oficial, cores originais, validada contra a imagem de referência da SPAC.
 
-Nomes sugeridos:
+Nomes em uso (extensão .png):
   abc-supermercados       big-box-supermercados   grupo-zelo            vli-logistica
   apoio-atacado-varejo    supermercados-nagumo    banana-brasil         supermercados-rex
   bora                    paraibuna-embalagens    expand                supernosso

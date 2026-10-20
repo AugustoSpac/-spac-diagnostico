@@ -1,4 +1,4 @@
-import { GapSection, PartnersSection, PurposeValues, StorySection } from "@/components/sections/about";
+import { PartnersSection, PositioningSection, PurposeValues, StorySection } from "@/components/sections/about";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Differentials } from "@/components/sections/home";
 import { PageHero } from "@/components/sections/PageHero";
@@ -24,7 +24,7 @@ export default function SobrePage() {
         }
         lead="Somos uma consultoria de gestão. Transformamos problemas empresariais em melhoria efetiva de resultado, com a profundidade de uma grande consultoria e a proximidade que a média empresa precisa."
       />
-      <GapSection index="01" />
+      <PositioningSection index="01" />
       <StorySection index="02" />
       <PurposeValues index="03" />
       <PartnersSection index="04" />

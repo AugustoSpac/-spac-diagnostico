@@ -34,6 +34,10 @@ export default function PrivacidadePage() {
               Exclusivamente para responder ao contato e conduzir a conversa comercial solicitada.
               Não vendemos nem compartilhamos esses dados com terceiros para fins de marketing.
             </p>
+            <p>
+              As mensagens do formulário são encaminhadas ao e-mail comercial da SPAC por meio de
+              um provedor de envio de e-mails, que atua apenas como operador técnico dessa entrega.
+            </p>
             <h2>Base legal e armazenamento</h2>
             <p>
               O tratamento se baseia no consentimento registrado no envio do formulário. Os dados
@@ -43,7 +47,8 @@ export default function PrivacidadePage() {
             <h2>Seus direitos</h2>
             <p>
               Você pode solicitar a qualquer momento acesso, correção ou exclusão dos seus dados, ou
-              revogar o consentimento, pelo canal de contato indicado neste site.
+              revogar o consentimento, pelo e-mail{" "}
+              <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
             </p>
             <h2>Cookies</h2>
             <p>

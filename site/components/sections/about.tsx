@@ -1,16 +1,17 @@
 import Image from "next/image";
+import { Fragment } from "react";
+import { ArrowRight } from "@/components/ui/Icons";
 import { PendingBadge } from "@/components/ui/Pending";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { Em, SectionHeader } from "@/components/ui/SectionHeader";
-import { partners, values, type Partner } from "@/content/institutional";
+import { partners, positioningCycle, values, type Partner } from "@/content/institutional";
 import { site } from "@/content/site";
 
-/** "A lacuna": a SPAC atua no meio que falta entre o sonho e o controle. */
-export function GapSection({ index = "01" }: { index?: string }) {
-  const sides = [
-    { l: "S", name: "Sonhar", desc: "Visão de longo prazo, ambição, estratégia no papel" },
-    { l: "C", name: "Controlar", desc: "Rotina, indicadores e gestão do dia a dia" },
-  ];
+/**
+ * Posicionamento: a SPAC atua em todo o ciclo — Sonhar, Planejar, Agir e Controlar —,
+ * com as quatro etapas no mesmo nível e o retorno do Controlar para o Sonhar.
+ */
+export function PositioningSection({ index = "01" }: { index?: string }) {
   return (
     <section className="section-y bg-paper">
       <div className="container-spac">
@@ -19,36 +20,76 @@ export function GapSection({ index = "01" }: { index?: string }) {
           kicker="Posicionamento"
           title={
             <>
-              A maioria das empresas tem o sonho e o controle. <Em>Falta o meio.</Em>
+              Da visão de futuro <Em>à geração de resultados.</Em>
             </>
           }
-          lead="Sabemos onde queremos chegar e acompanhamos o dia a dia. O que costuma faltar é transformar ambição em plano executável e plano em resultado medido."
+          lead="A SPAC atua em todo o ciclo de gestão empresarial: da definição da ambição e das escolhas estratégicas ao planejamento, à execução e ao acompanhamento dos resultados. Conectamos visão de longo prazo, planos estruturados, execução disciplinada e controle contínuo."
         />
-        <Stagger className="mt-16 grid items-stretch gap-4 md:mt-20 md:grid-cols-[1fr_1.25fr_1fr]">
-          <StaggerItem className="flex flex-col items-center justify-center rounded-card border border-gray-200 bg-gray-100 p-8 text-center">
-            <span className="text-5xl font-extrabold text-gray-500">{sides[0].l}</span>
-            <span className="t-h4 mt-4 text-graphite-900">{sides[0].name}</span>
-            <span className="mt-3 max-w-[24ch] text-[0.9375rem] text-graphite-700">{sides[0].desc}</span>
-          </StaggerItem>
-          <StaggerItem className="flex flex-col items-center justify-center rounded-card border border-gold bg-gold-veil px-8 py-12 text-center md:-my-4">
-            <span className="t-kicker text-gold-text">A lacuna · onde a SPAC entra</span>
-            <span className="mt-5 text-6xl font-extrabold tracking-[-0.03em] text-gold-text">P · A</span>
-            <span className="t-h4 mt-4 text-graphite-900">Planejar e Agir</span>
-            <span className="mt-3 max-w-[30ch] text-[0.9375rem] text-graphite-900">
-              O que transforma ambição em plano executável e plano em resultado medido.
-            </span>
-          </StaggerItem>
-          <StaggerItem className="flex flex-col items-center justify-center rounded-card border border-gray-200 bg-gray-100 p-8 text-center">
-            <span className="text-5xl font-extrabold text-gray-500">{sides[1].l}</span>
-            <span className="t-h4 mt-4 text-graphite-900">{sides[1].name}</span>
-            <span className="mt-3 max-w-[24ch] text-[0.9375rem] text-graphite-700">{sides[1].desc}</span>
-          </StaggerItem>
+
+        <Stagger
+          className="mt-16 grid grid-cols-1 gap-3 md:mt-20 lg:grid-cols-[minmax(0,1fr)_2.25rem_minmax(0,1fr)_2.25rem_minmax(0,1fr)_2.25rem_minmax(0,1fr)] lg:gap-0"
+          aria-label="Ciclo SPAC: Sonhar, Planejar, Agir e Controlar"
+        >
+          {positioningCycle.map((st, i) => (
+            <Fragment key={st.letter}>
+              <StaggerItem className="h-full">
+                <article className="group flex h-full flex-col rounded-card border border-gray-200 bg-white p-6 transition-colors duration-500 ease-spac hover:border-gold md:p-7">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <span
+                      aria-hidden="true"
+                      className="text-[3.5rem] leading-none font-extrabold tracking-[-0.04em] text-gold-text"
+                    >
+                      {st.letter}
+                    </span>
+                    <span className="t-kicker text-gray-500">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="t-kicker mt-6 text-graphite-900">{st.name}</h3>
+                  <p className="t-h4 mt-3 text-graphite-900">{st.headline}</p>
+                  <p className="mt-3 text-[0.9375rem] text-graphite-700">{st.description}</p>
+                </article>
+              </StaggerItem>
+              {i < positioningCycle.length - 1 && (
+                <div aria-hidden="true" className="flex items-center justify-center py-1 lg:py-0">
+                  <ArrowRight size={22} className="rotate-90 text-gold-deep lg:rotate-0" />
+                </div>
+              )}
+            </Fragment>
+          ))}
         </Stagger>
+
+        {/* Retorno do ciclo: o controle realimenta a visão e o planejamento */}
+        <Reveal delay={0.15}>
+          {/* Desktop: arco que liga Controlar de volta a Sonhar */}
+          <div className="relative mx-[12.5%] hidden h-14 lg:block" aria-hidden="true">
+            <div className="absolute inset-0 rounded-b-[14px] border-2 border-t-0 border-dashed border-gold-deep/70" />
+            <span className="absolute top-[-7px] left-[-7px] size-0 border-x-[7px] border-b-[9px] border-x-transparent border-b-gold-deep" />
+          </div>
+          <p className="mt-4 flex items-center gap-3 text-[0.9375rem] text-graphite-700 lg:justify-center">
+            <svg
+              viewBox="0 0 24 24"
+              className="size-5 shrink-0 text-gold-text"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4" />
+            </svg>
+            <span>
+              O que se aprende no <strong className="font-extrabold text-graphite-900">Controlar</strong>{" "}
+              realimenta a visão e o planejamento: um ciclo contínuo de gestão.
+            </span>
+          </p>
+        </Reveal>
+
         <Reveal className="mt-14 flex max-w-3xl border-l-4 border-gold bg-gold-veil px-6 py-5">
           <p className="text-graphite-900">
-            A SPAC une <strong className="font-extrabold">sonho e visão de longo prazo</strong> com{" "}
-            <strong className="font-extrabold">controle e gestão no curto prazo</strong>: as duas
-            pontas, pelo meio que falta.
+            A SPAC conecta todas as etapas da gestão para transformar{" "}
+            <strong className="font-extrabold">ambição em resultado sustentável</strong>. Podemos
+            atuar em uma necessidade específica ou conduzir o ciclo completo, conforme os desafios de
+            cada empresa.
           </p>
         </Reveal>
       </div>

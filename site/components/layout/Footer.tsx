@@ -70,7 +70,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`mailto:${site.contactEmail}`}
-                    className="text-gray-200 transition-colors hover:text-champagne"
+                    className="text-gray-200 transition-colors [overflow-wrap:anywhere] hover:text-champagne"
                   >
                     {site.contactEmail}
                   </a>

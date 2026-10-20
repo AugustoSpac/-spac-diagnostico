@@ -51,6 +51,36 @@ export const methodology: Stage[] = [
   },
 ];
 
+/** Página Sobre · Posicionamento: a SPAC atua nas quatro etapas do ciclo, com o mesmo peso. */
+export const positioningCycle = [
+  {
+    letter: "S",
+    name: "Sonhar",
+    headline: "Definir onde queremos chegar.",
+    description: "Visão de futuro, ambição, direcionamento e escolhas estratégicas.",
+  },
+  {
+    letter: "P",
+    name: "Planejar",
+    headline: "Definir como chegar lá.",
+    description: "Planejamento estratégico, metas, indicadores, projetos e planos de ação.",
+  },
+  {
+    letter: "A",
+    name: "Agir",
+    headline: "Transformar planos em realidade.",
+    description:
+      "Implantação de projetos, melhoria de processos, execução das iniciativas e mobilização das equipes.",
+  },
+  {
+    letter: "C",
+    name: "Controlar",
+    headline: "Garantir resultados e evolução contínua.",
+    description:
+      "Gestão por indicadores, acompanhamento de resultados, rotinas de gestão e correção de desvios.",
+  },
+];
+
 export const methodologyClosing =
   "O ciclo não termina em Controlar: o que se aprende no controle realimenta o próximo sonho.";
 

@@ -18,7 +18,7 @@ Decisões já tomadas para a publicação: clientes anônimos, artigos-rascunho 
 | 5 | Confirmar se os resultados do case de varejo alimentar são trabalho da SPAC ou trajetória executiva dos sócios | /cases/varejo-alimentar |
 | 6 | Validar contexto e desafio do case de varejo alimentar (textos derivados dos resultados) | /cases/varejo-alimentar |
 | 7 | Dados do case do setor de bebidas (contexto, desafio, solução, resultados) para voltar a ser um case completo | /cases |
-| 8 | 2 a 4 cases adicionais (indústria, distribuição, serviços) | /cases ("Case em preparação") |
+| 8 | Cases adicionais (distribuição, serviços). Indústria publicado: /cases/industria-bens-de-consumo | /cases ("Case em preparação") |
 | 9 | Ano de fundação e marcos da SPAC | Sobre › Nossa história |
 | 10 | Depoimentos e logos de clientes, com autorização | Home / Cases |
 | 11 | LinkedIn da empresa (`NEXT_PUBLIC_LINKEDIN_URL`) | Rodapé |

@@ -112,7 +112,8 @@ export function Credibility({ index = "01" }: { index?: string }) {
           <p className="t-kicker text-gray-600 md:col-span-3">Experiência construída em</p>
           <div className="md:col-span-9">
             <p className="text-[clamp(1.375rem,1.1rem+1vw,2rem)] leading-snug font-extrabold tracking-[-0.02em] text-graphite-900">
-              Varejo alimentar <span className="font-normal text-gray-500">·</span> Bebidas{" "}
+              Varejo alimentar <span className="font-normal text-gray-500">·</span> Indústria de bens de consumo{" "}
+              <span className="font-normal text-gray-500">·</span> Bebidas{" "}
               <span className="font-normal text-gray-500">·</span> Distribuição{" "}
               <span className="font-normal text-gray-500">·</span>{" "}
               <span className="font-normal text-graphite-700">
@@ -241,7 +242,7 @@ export function CasesShowcase() {
                 </TextLink>
               </div>
             </Reveal>
-            {upcomingCases.slice(0, rest.length > 0 ? 1 : 0).map((u) => (
+            {upcomingCases.slice(0, rest.length > 0 ? 0 : 1).map((u) => (
               <Reveal key={u.sector} delay={0.2}>
                 <UpcomingCaseCard {...u} />
               </Reveal>

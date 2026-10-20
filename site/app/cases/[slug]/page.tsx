@@ -58,6 +58,93 @@ export default async function CasePage({ params }: PageProps<"/cases/[slug]">) {
   const c = getCase(slug);
   if (!c) notFound();
 
+  const blocks: Array<{ title: string; pending?: boolean; content: React.ReactNode }> = [];
+  if (c.context) {
+    blocks.push({
+      title: "Contexto",
+      pending: c.context.pending,
+      content: <p className="t-lead text-graphite-900">{c.context.text}</p>,
+    });
+  }
+  blocks.push({
+    title: "O desafio",
+    pending: c.challenge.pending,
+    content: (
+      <div className="space-y-5">
+        {c.challenge.paragraphs.map((p, i) => (
+          <p key={i} className={i === 0 ? "t-lead text-graphite-900" : "text-[1.0625rem] text-graphite-700"}>
+            {p}
+          </p>
+        ))}
+      </div>
+    ),
+  });
+  blocks.push({
+    title: "Nossa atuação",
+    pending: c.solution.pending,
+    content: (
+      <>
+        {c.solution.intro && <p className="t-lead text-graphite-900">{c.solution.intro}</p>}
+        {c.solution.streams && (
+          <ol className={`grid gap-4 md:grid-cols-2 ${c.solution.intro ? "mt-8" : ""}`}>
+            {c.solution.streams.map((st, i) => (
+              <li key={st.title} className="rounded-card border border-gray-200 bg-paper p-6">
+                <p className="t-kicker text-gold-text">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="t-h4 mt-3 text-graphite-900">{st.title}</h3>
+                <ul className="mt-4 space-y-2.5">
+                  {st.items.map((it) => (
+                    <li key={it} className="flex gap-3 text-[0.9375rem] text-graphite-700">
+                      <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 bg-gold" />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        )}
+        {c.solution.items && (
+          <ul className={`border-t border-gray-200 ${c.solution.intro ? "mt-8" : ""}`}>
+            {c.solution.items.map((it) => (
+              <li key={it} className="flex gap-4 border-b border-gray-200 py-4 text-graphite-900">
+                <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 bg-gold" />
+                {it}
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
+    ),
+  });
+  blocks.push({
+    title: "Resultados",
+    content: (
+      <>
+        <Stagger className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+          {c.results.map((r, i) => (
+            <StaggerItem key={r.label} className="border-l border-gray-200 pl-6">
+              <p className={`t-number ${i === 0 ? "text-gold-text" : "text-graphite-900"}`}>{r.value}</p>
+              <p className="t-kicker mt-4 text-gray-600">{r.label}</p>
+              {r.context && <p className="mt-2 text-graphite-700">{r.context}</p>}
+            </StaggerItem>
+          ))}
+        </Stagger>
+        {c.resultsSummary && <p className="mt-10 max-w-[60ch] text-[1.0625rem] text-graphite-900">{c.resultsSummary}</p>}
+        {c.source && <p className="mt-8 text-sm text-gray-600">{c.source}</p>}
+      </>
+    ),
+  });
+  if (c.differential) {
+    blocks.push({
+      title: "O diferencial SPAC",
+      content: (
+        <p className="border-l-4 border-gold bg-gold-veil px-6 py-5 text-[1.0625rem] text-graphite-900">
+          {c.differential}
+        </p>
+      ),
+    });
+  }
+
   const idx = cases.findIndex((x) => x.slug === c.slug);
   const next = cases[(idx + 1) % cases.length];
 
@@ -117,34 +204,11 @@ export default async function CasePage({ params }: PageProps<"/cases/[slug]">) {
           </aside>
 
           <div className="space-y-16 lg:col-span-8">
-            <Block index="01" title="Contexto" pending={c.context.pending}>
-              <p className="t-lead text-graphite-900">{c.context.text}</p>
-            </Block>
-            <Block index="02" title="Desafio" pending={c.challenge.pending}>
-              <p className="t-lead text-graphite-900">{c.challenge.text}</p>
-            </Block>
-            <Block index="03" title="Solução" pending={c.solution.pending}>
-              <ul className="border-t border-gray-200">
-                {c.solution.items.map((it) => (
-                  <li key={it} className="flex gap-4 border-b border-gray-200 py-4 text-graphite-900">
-                    <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 bg-gold" />
-                    {it}
-                  </li>
-                ))}
-              </ul>
-            </Block>
-            <Block index="04" title="Resultados">
-              <Stagger className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
-                {c.results.map((r, i) => (
-                  <StaggerItem key={r.label} className="border-l border-gray-200 pl-6">
-                    <p className={`t-number ${i === 0 ? "text-gold-text" : "text-graphite-900"}`}>{r.value}</p>
-                    <p className="t-kicker mt-4 text-gray-600">{r.label}</p>
-                    {r.context && <p className="mt-2 text-graphite-700">{r.context}</p>}
-                  </StaggerItem>
-                ))}
-              </Stagger>
-              {c.source && <p className="mt-10 text-sm text-gray-600">{c.source}</p>}
-            </Block>
+            {blocks.map((b, i) => (
+              <Block key={b.title} index={String(i + 1).padStart(2, "0")} title={b.title} pending={b.pending}>
+                {b.content}
+              </Block>
+            ))}
           </div>
         </div>
       </section>

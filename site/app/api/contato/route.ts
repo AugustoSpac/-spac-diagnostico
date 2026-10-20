@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { validateContact, type ContactPayload } from "@/lib/contact";
 import { contactConfig, isContactConfigured } from "@/lib/contact-server";
 
@@ -6,6 +7,18 @@ import { contactConfig, isContactConfigured } from "@/lib/contact-server";
  * para o e-mail comercial (contato@spacgestao.com por padrão).
  * Sem RESEND_API_KEY, responde 503 — o site nunca finge que enviou uma mensagem.
  */
+/**
+ * Status do envio, lido a cada acesso (não no build): assim o formulário é ativado
+ * assim que RESEND_API_KEY existir na Vercel, sem depender de quando o site foi gerado.
+ */
+export async function GET() {
+  await connection();
+  return Response.json(
+    { enabled: isContactConfigured() },
+    { headers: { "Cache-Control": "no-store" } },
+  );
+}
+
 export async function POST(request: Request) {
   let body: Partial<ContactPayload>;
   try {

@@ -38,7 +38,7 @@ Evolução recomendada quando o volume crescer: CMS headless (Sanity, Payload ou
 
 ## Formulário
 
-`POST /api/contato` valida (`lib/contact.ts`), filtra honeypot e envia via API HTTP da Resend para `contato@spacgestao.com` (config em `lib/contact-server.ts`, só servidor). Só `RESEND_API_KEY` é obrigatória; sem ela → 503 `not_configured` e a página mostra "Formulário disponível em breve" com o e-mail como alternativa. Remetente padrão `onboarding@resend.dev` (só entrega ao dono da conta Resend); com domínio verificado, usar `CONTACT_FROM_EMAIL`. `RESEND_API_URL` existe só para testes com servidor simulado. Respostas: 400 JSON inválido · 422 validação · 502 falha no provedor · 200 ok.
+`POST /api/contato` valida (`lib/contact.ts`), filtra honeypot e envia via API HTTP da Resend para `contato@spacgestao.com` (config em `lib/contact-server.ts`, só servidor). Só `RESEND_API_KEY` é obrigatória. O formulário consulta `GET /api/contato` (dinâmico, `connection()`) ao abrir, então a chave vale assim que for salva na Vercel, sem depender do build; sem ela → `{enabled:false}` / 503 no POST, e a página mostra "Formulário disponível em breve" com o e-mail como alternativa. Remetente padrão `onboarding@resend.dev` (só entrega ao dono da conta Resend); com domínio verificado, usar `CONTACT_FROM_EMAIL`. `RESEND_API_URL` existe só para testes com servidor simulado. Respostas: 400 JSON inválido · 422 validação · 502 falha no provedor · 200 ok.
 
 ## Variáveis de ambiente (`site/.env.example`)
 

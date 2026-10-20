@@ -3,7 +3,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { Em } from "@/components/ui/SectionHeader";
 import { site } from "@/content/site";
-import { isContactConfigured } from "@/lib/contact-server";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -29,7 +28,6 @@ const steps = [
 ];
 
 export default function ContatoPage() {
-  const enabled = isContactConfigured();
   return (
     <>
       <PageHero
@@ -68,7 +66,7 @@ export default function ContatoPage() {
             )}
           </Reveal>
           <Reveal className="lg:col-span-8" delay={0.1}>
-            <ContactForm enabled={enabled} fallbackEmail={site.contactEmail} />
+            <ContactForm fallbackEmail={site.contactEmail} />
           </Reveal>
         </div>
       </section>

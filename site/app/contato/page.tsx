@@ -3,7 +3,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { Em } from "@/components/ui/SectionHeader";
 import { site } from "@/content/site";
-import { isContactConfigured } from "@/lib/contact";
+import { isContactConfigured } from "@/lib/contact-server";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({

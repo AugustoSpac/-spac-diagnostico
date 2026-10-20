@@ -56,8 +56,10 @@ Veja `.env.example`. Resumo:
 | `NEXT_PUBLIC_SITE_URL` | URL canônica (sitemap, Open Graph) |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | `true` libera indexação. **Padrão: bloqueado** (pré-visualização) |
 | `NEXT_PUBLIC_SHOW_PENDING` | `true` mostra os selos internos de conteúdo pendente (só para revisão) |
-| `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_LINKEDIN_URL` | Exibidos no rodapé/contato quando preenchidos |
-| `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Ativam o envio do formulário via Resend. Sem as três, o formulário aparece em modo pré-visualização com o envio desativado |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Troca o e-mail comercial (padrão: `contato@spacgestao.com`), exibido no rodapé/contato e destino do formulário |
+| `NEXT_PUBLIC_LINKEDIN_URL` | Exibido no rodapé quando preenchido |
+| `RESEND_API_KEY` | **Ativa o envio do formulário** (Resend). Sem ela, o formulário mostra "disponível em breve" e indica o e-mail |
+| `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Opcionais: destinatário(s) e remetente. Veja `.env.example` |
 
 ## Publicar na Vercel
 
@@ -69,7 +71,12 @@ Veja `.env.example`. Resumo:
 4. **Deploy**. A Vercel gera um endereço de prévia (`*.vercel.app`) para revisão.
 5. Domínio oficial: em **Settings › Domains**, adicione o domínio e ajuste o DNS conforme as instruções da Vercel. Faça isso apenas com a aprovação final.
 
-Para ativar o formulário: crie conta na Resend, verifique o domínio remetente, gere a API key, cadastre as três variáveis e faça novo deploy. Teste um envio real antes de divulgar.
+Para ativar o formulário (as mensagens vão para `contato@spacgestao.com`):
+1. Crie a conta em resend.com **usando o e-mail contato@spacgestao.com** (o remetente de teste da Resend só entrega para o e-mail dono da conta).
+2. Em **API Keys → Create API Key** (permissão *Sending access*), copie a chave.
+3. Na Vercel, cadastre `RESEND_API_KEY` com a chave e faça **Redeploy**.
+4. Envie um teste pelo site e confira a caixa de entrada (e o spam).
+5. Recomendado depois: em **Domains** na Resend, verifique `spacgestao.com` (registros DNS no Cloudflare, *DNS only*) e cadastre `CONTACT_FROM_EMAIL` = `Site SPAC <site@spacgestao.com>` para melhor entrega.
 
 ## Estrutura
 

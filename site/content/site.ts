@@ -6,14 +6,15 @@
 export const site = {
   name: "SPAC Gestão",
   legalName: "SPAC Gestão LTDA",
-  /** Domínio inferido do e-mail corporativo — confirmar antes da publicação. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://spacgestao.com").replace(/\/$/, ""),
+  /** Endereço principal (spacgestao.com redireciona para www na Vercel). */
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.spacgestao.com").replace(/\/$/, ""),
   locale: "pt_BR",
   tagline: "Estratégia que se transforma em resultado.",
   description:
     "Consultoria de gestão que combina experiência executiva, metodologias estruturadas e inteligência artificial para acelerar resultados de empresas de médio porte.",
   purpose: "Democratizar a transformação para todos que querem fazer a diferença.",
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || null,
+  /** E-mail comercial oficial (pode ser trocado por NEXT_PUBLIC_CONTACT_EMAIL). */
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@spacgestao.com",
   linkedinUrl: process.env.NEXT_PUBLIC_LINKEDIN_URL || null,
 } as const;
 

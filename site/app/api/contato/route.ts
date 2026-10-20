@@ -1,9 +1,10 @@
-import { isContactConfigured, validateContact, type ContactPayload } from "@/lib/contact";
+import { validateContact, type ContactPayload } from "@/lib/contact";
+import { contactConfig, isContactConfigured } from "@/lib/contact-server";
 
 /**
- * Recebe o formulário de contato e envia por e-mail via Resend (API HTTP).
- * Sem RESEND_API_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL, responde 503 —
- * o site nunca finge que enviou uma mensagem.
+ * Recebe o formulário de contato e envia por e-mail via Resend (API HTTP)
+ * para o e-mail comercial (contato@spacgestao.com por padrão).
+ * Sem RESEND_API_KEY, responde 503 — o site nunca finge que enviou uma mensagem.
  */
 export async function POST(request: Request) {
   let body: Partial<ContactPayload>;
@@ -41,16 +42,17 @@ export async function POST(request: Request) {
     "— Enviado pelo formulário do site da SPAC Gestão (consentimento LGPD registrado).",
   ].join("\n");
 
+  const cfg = contactConfig();
   try {
-    const res = await fetch("https://api.resend.com/emails", {
+    const res = await fetch(cfg.apiUrl, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${cfg.apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.CONTACT_FROM_EMAIL,
-        to: process.env.CONTACT_TO_EMAIL!.split(",").map((s) => s.trim()),
+        from: cfg.from,
+        to: cfg.to,
         reply_to: clean(body.email),
         subject: `Novo contato pelo site: ${clean(body.company)} (${clean(body.name)})`,
         text,

@@ -1,12 +1,12 @@
 # Informações que a SPAC precisa fornecer ou validar
 
-Decisões já tomadas para a publicação: clientes anônimos, artigos-rascunho fora do ar, e-mail comercial ainda não divulgado.
+Decisões já tomadas para a publicação: clientes anônimos, artigos-rascunho fora do ar, e-mail comercial contato@spacgestao.com.
 
 ## Prioridade 1 — impacto direto na conversão
 
 | # | Item | Situação atual |
 |---|---|---|
-| 1 | **Canal de contato ativo**: e-mail comercial (`NEXT_PUBLIC_CONTACT_EMAIL`) e/ou conta Resend para o formulário | **O site publicado não tem canal de contato funcionando**: o formulário mostra "disponível em breve" |
+| 1 | **Ativar o envio do formulário**: conta Resend com contato@spacgestao.com + `RESEND_API_KEY` na Vercel (ver `site/README.md`) | E-mail contato@spacgestao.com já exibido no site; formulário mostra "disponível em breve" até a chave ser cadastrada |
 | 2 | **Domínio oficial** confirmado (assumido: spacgestao.com) | Configurável por variável |
 | 3 | **Revisão jurídica** da política de privacidade; CNPJ e razão social completos | Texto-base publicado |
 

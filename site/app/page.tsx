@@ -1,3 +1,4 @@
+import { ClientsSection } from "@/components/sections/ClientsSection";
 import { CtaBand } from "@/components/sections/CtaBand";
 import {
   CasesShowcase,
@@ -16,6 +17,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <Credibility />
+      <ClientsSection />
       <Problems />
       <Solutions />
       <CasesShowcase />

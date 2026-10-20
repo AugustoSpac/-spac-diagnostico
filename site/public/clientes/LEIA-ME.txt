@@ -1,0 +1,16 @@
+Logomarcas da seção "Clientes" (home).
+
+Coloque aqui um arquivo por cliente — SVG (preferencial) ou PNG com fundo transparente,
+versão oficial, cores originais, validada contra a imagem de referência da SPAC.
+
+Nomes sugeridos:
+  abc-supermercados       big-box-supermercados   grupo-zelo            vli-logistica
+  apoio-atacado-varejo    supermercados-nagumo    banana-brasil         supermercados-rex
+  bora                    paraibuna-embalagens    expand                supernosso
+  porcao                  topfood-alimentos       interweg-seguros      it-arq
+
+Depois, em site/content/clients.ts, preencha para cada cliente:
+  logo: "/clientes/<nome>.svg", width: <largura do arquivo>, height: <altura do arquivo>
+
+O cliente só aparece no site quando logo, width e height estiverem preenchidos.
+A seção inteira só aparece quando houver pelo menos uma logo.

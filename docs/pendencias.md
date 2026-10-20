@@ -20,7 +20,7 @@ Decisões já tomadas para a publicação: clientes anônimos, artigos-rascunho 
 | 7 | Dados do case do setor de bebidas (contexto, desafio, solução, resultados) para voltar a ser um case completo | /cases |
 | 8 | Cases adicionais (distribuição, serviços). Indústria publicado: /cases/industria-bens-de-consumo | /cases ("Case em preparação") |
 | 9 | Ano de fundação e marcos da SPAC | Sobre › Nossa história |
-| 10 | Depoimentos e logos de clientes, com autorização | Home / Cases |
+| 10 | **Logos dos 16 clientes** (arquivos oficiais validados contra a imagem de referência) para ativar a seção Clientes — ver `site/public/clientes/LEIA-ME.txt`. Depoimentos, com autorização | Home (após Credibilidade) / Cases |
 | 11 | LinkedIn da empresa (`NEXT_PUBLIC_LINKEDIN_URL`) | Rodapé |
 
 ## Prioridade 3 — conteúdo editorial

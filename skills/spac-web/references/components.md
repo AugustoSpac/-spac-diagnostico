@@ -34,6 +34,7 @@ Não criar card com barra colorida no topo. Não repetir o mesmo card em 3 seç�
 | `HomeHero` | Só na home. Título em máscara palavra a palavra + `HeroTrajectory` + 2 CTAs + faixa de 3 provas |
 | `PageHero` | Topo de toda página interna (escuro). Aceita `crumbs`, `children` (CTA, selos), `compact` |
 | `Credibility` | KPIs (`CountUp`) + "experiência construída em" |
+| `ClientsSection` | Grade de logos (4/3/2 colunas), cores originais, área visual equilibrada pelo formato; só aparece com logos validadas em `content/clients.ts` |
 | `Problems` + `ProblemsList` | Lista editorial interativa (acordeão: hover/foco/toque) |
 | `Solutions` | Grade de 3 `SolutionCard` |
 | `CasesShowcase` | Destaque 7 col + lista 5 col |

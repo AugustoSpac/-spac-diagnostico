@@ -193,6 +193,8 @@ export function Solutions({ index = "03" }: { index?: string }) {
 /* --------------------------------------------------------------- 5 · Cases */
 export function CasesShowcase() {
   const [featured, ...rest] = cases;
+  // Com dois ou mais cases ao lado do destaque, o painel do portfólio vira faixa de largura total.
+  const panelBelow = rest.length >= 2;
   return (
     <section className="section-y bg-paper">
       <div className="container-spac">
@@ -220,28 +222,11 @@ export function CasesShowcase() {
                 <CaseCard item={c} />
               </Reveal>
             ))}
-            <Reveal delay={0.1}>
-              <div className="flex h-full flex-col rounded-card border border-gray-200 bg-white p-6 md:p-7">
-                <p className="t-kicker text-gray-600">Outros resultados do portfólio</p>
-                <ul className="mt-5 border-t border-gray-200">
-                  {portfolioResults.map((r) => (
-                    <li key={r} className="flex gap-3 border-b border-gray-200 py-3.5 text-[0.9875rem] text-graphite-900">
-                      <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 bg-gold" />
-                      {r}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-sm text-gray-600">
-                  Clientes não identificados por confidencialidade.
-                </p>
-                <TextLink
-                  href="/cases"
-                  className="mt-auto pt-8 text-[0.9375rem] text-graphite-900 hover:text-gold-text"
-                >
-                  Ver cases
-                </TextLink>
-              </div>
-            </Reveal>
+            {!panelBelow && (
+              <Reveal delay={0.1}>
+                <PortfolioPanel />
+              </Reveal>
+            )}
             {upcomingCases.slice(0, rest.length > 0 ? 0 : 1).map((u) => (
               <Reveal key={u.sector} delay={0.2}>
                 <UpcomingCaseCard {...u} />
@@ -249,8 +234,55 @@ export function CasesShowcase() {
             ))}
           </div>
         </div>
+        {panelBelow && (
+          <Reveal className="mt-5">
+            <PortfolioPanel wide />
+          </Reveal>
+        )}
       </div>
     </section>
+  );
+}
+
+function PortfolioPanel({ wide = false }: { wide?: boolean }) {
+  const link = (
+    <TextLink href="/cases" className="text-[0.9375rem] text-graphite-900 hover:text-gold-text">
+      Ver cases
+    </TextLink>
+  );
+  if (wide) {
+    return (
+      <div className="rounded-card border border-gray-200 bg-white p-6 md:p-8">
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <p className="t-kicker text-gray-600">Outros resultados do portfólio</p>
+          {link}
+        </div>
+        <ul className="mt-6 grid gap-x-8 border-t border-gray-200 sm:grid-cols-2 lg:grid-cols-4">
+          {portfolioResults.map((r) => (
+            <li key={r} className="flex gap-3 border-b border-gray-200 py-4 text-[0.9875rem] text-graphite-900 lg:border-b-0">
+              <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 bg-gold" />
+              {r}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-gray-600">Clientes não identificados por confidencialidade.</p>
+      </div>
+    );
+  }
+  return (
+    <div className="flex h-full flex-col rounded-card border border-gray-200 bg-white p-6 md:p-7">
+      <p className="t-kicker text-gray-600">Outros resultados do portfólio</p>
+      <ul className="mt-5 border-t border-gray-200">
+        {portfolioResults.map((r) => (
+          <li key={r} className="flex gap-3 border-b border-gray-200 py-3.5 text-[0.9875rem] text-graphite-900">
+            <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 bg-gold" />
+            {r}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-5 text-sm text-gray-600">Clientes não identificados por confidencialidade.</p>
+      <div className="mt-auto pt-8">{link}</div>
+    </div>
   );
 }
 

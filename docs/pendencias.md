@@ -18,7 +18,7 @@ Decisões já tomadas para a publicação: clientes anônimos, artigos-rascunho 
 | 5 | Confirmar se os resultados do case de varejo alimentar são trabalho da SPAC ou trajetória executiva dos sócios | /cases/varejo-alimentar |
 | 6 | Validar contexto e desafio do case de varejo alimentar (textos derivados dos resultados) | /cases/varejo-alimentar |
 | 7 | Dados do case do setor de bebidas (contexto, desafio, solução, resultados) para voltar a ser um case completo | /cases |
-| 8 | Cases adicionais (distribuição, serviços). Indústria publicado: /cases/industria-bens-de-consumo | /cases ("Case em preparação") |
+| 8 | Cases adicionais (distribuição, serviços). Publicados: indústria (/cases/industria-bens-de-consumo) e e-commerce (/cases/ecommerce) | /cases ("Case em preparação") |
 | 9 | Ano de fundação e marcos da SPAC | Sobre › Nossa história |
 | 10 | Seção Clientes publicada com as 16 logos recortadas da imagem de referência. **Substituir pelos arquivos oficiais** (SVG/PNG em alta) quando disponíveis, mantendo os nomes em `site/public/clientes/`; confirmar autorização de uso das marcas. Depoimentos, com autorização | Home (após Credibilidade) |
 | 11 | LinkedIn da empresa (`NEXT_PUBLIC_LINKEDIN_URL`) | Rodapé |

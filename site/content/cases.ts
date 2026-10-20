@@ -26,10 +26,12 @@ export type CaseStudy = {
   /** "Nossa atuação": lista simples (items) ou frentes de trabalho (streams), com abertura opcional. */
   solution: { intro?: string; items?: string[]; streams?: CaseStream[]; pending?: boolean };
   results: CaseMetric[];
+  /** Resultados qualitativos (sem número), exibidos em lista abaixo dos indicadores. */
+  resultsNotes?: string[];
   /** Texto que interpreta os resultados. */
   resultsSummary?: string;
-  /** Fechamento: o que a SPAC fez de diferente neste projeto. */
-  differential?: string;
+  /** Fechamento: o que a SPAC fez de diferente neste projeto (um ou mais parágrafos). */
+  differential?: string | string[];
   source?: string;
   /** Semente da arte de capa (TrajectoryArt). */
   artSeed: number;
@@ -141,6 +143,77 @@ export const cases: CaseStudy[] = [
       "Mais do que formular recomendações estratégicas, a SPAC conectou diagnóstico, decisões executivas e planejamento da execução, traduzindo desafios complexos de mercado em prioridades e ações objetivas para o negócio.",
     source: "Cliente não identificado por confidencialidade.",
     artSeed: 41,
+    needsClientApproval: false,
+  },
+  {
+    slug: "ecommerce",
+    client: "Empresa nacional com operação de e-commerce em expansão",
+    sector: "E-commerce",
+    fronts: ["performance", "transformacao"],
+    title: "Aceleração do crescimento e profissionalização da gestão de um canal digital",
+    headline: { value: "+254%", label: "de faturamento sobre o início de 2025" },
+    challenge: {
+      paragraphs: [
+        "Uma empresa nacional com operação de e-commerce em expansão precisava acelerar o crescimento das vendas digitais, melhorar a rentabilidade e aumentar a eficiência operacional do canal.",
+        "Apesar do potencial de crescimento, a operação enfrentava desafios relacionados à aquisição e fidelização de clientes, conversão do site, disponibilidade de produtos e gestão dos resultados.",
+        "A ausência de uma visão financeira específica do e-commerce e de rotinas estruturadas de acompanhamento dificultava a identificação de oportunidades e a tomada de decisões.",
+      ],
+    },
+    solution: {
+      intro:
+        "A SPAC conduziu um projeto de transformação da gestão do e-commerce, atuando diretamente nas principais alavancas de crescimento e eficiência operacional. O trabalho foi estruturado em quatro frentes.",
+      streams: [
+        {
+          title: "Gestão financeira e rentabilidade",
+          items: [
+            "Implantação de DRE específica para o e-commerce",
+            "Análise de receitas, custos, despesas e margens do canal",
+            "Revisão dos investimentos em tráfego pago e dos custos de entrega",
+          ],
+        },
+        {
+          title: "Aquisição, conversão e fidelização",
+          items: [
+            "Otimização das estratégias de aquisição de clientes",
+            "Estruturação de campanhas de CRM e relacionamento",
+            "Revisão da experiência de compra e implementação de melhorias no site",
+            "Desenvolvimento de iniciativas promocionais e de fidelização",
+          ],
+        },
+        {
+          title: "Eficiência operacional",
+          items: [
+            "Implantação de indicadores de desempenho e ranking operacional",
+            "Monitoramento da disponibilidade de produtos e identificação de rupturas",
+            "Otimização do sortimento e da exposição de produtos no e-commerce",
+          ],
+        },
+        {
+          title: "Gestão de resultados",
+          items: [
+            "Definição de metas e alavancas de crescimento",
+            "Implantação de reuniões periódicas de controle e resultado",
+            "Estruturação de planos de ação e acompanhamento dos indicadores comerciais e operacionais",
+            "Revisão das responsabilidades e da estrutura de gestão do canal",
+          ],
+        },
+      ],
+    },
+    results: [
+      { value: "+254%", label: "de crescimento do faturamento", context: "Em relação ao início de 2025" },
+      { value: "10%", label: "de crescimento médio mensal", context: "Durante o período do projeto" },
+    ],
+    resultsNotes: [
+      "Geração de receita incremental significativa por meio de campanhas de CRM e relacionamento com clientes",
+    ],
+    resultsSummary:
+      "Além da evolução comercial, o projeto estabeleceu maior visibilidade financeira, indicadores de performance e rotinas de gestão para sustentar o crescimento do e-commerce.",
+    differential: [
+      "A SPAC combinou visão estratégica, gestão comercial, inteligência de dados e execução operacional para transformar o e-commerce em uma operação mais estruturada e orientada a resultados.",
+      "A atuação foi além das iniciativas de marketing digital, conectando crescimento de vendas, eficiência operacional, rentabilidade e disciplina de gestão.",
+    ],
+    source: "Cliente não identificado por confidencialidade.",
+    artSeed: 59,
     needsClientApproval: false,
   },
 ];

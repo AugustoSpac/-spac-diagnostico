@@ -129,18 +129,31 @@ export default async function CasePage({ params }: PageProps<"/cases/[slug]">) {
             </StaggerItem>
           ))}
         </Stagger>
+        {c.resultsNotes && (
+          <ul className="mt-10 border-t border-gray-200">
+            {c.resultsNotes.map((n) => (
+              <li key={n} className="flex gap-4 border-b border-gray-200 py-4 text-graphite-900">
+                <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 bg-gold" />
+                {n}
+              </li>
+            ))}
+          </ul>
+        )}
         {c.resultsSummary && <p className="mt-10 max-w-[60ch] text-[1.0625rem] text-graphite-900">{c.resultsSummary}</p>}
         {c.source && <p className="mt-8 text-sm text-gray-600">{c.source}</p>}
       </>
     ),
   });
   if (c.differential) {
+    const paragraphs = Array.isArray(c.differential) ? c.differential : [c.differential];
     blocks.push({
       title: "O diferencial SPAC",
       content: (
-        <p className="border-l-4 border-gold bg-gold-veil px-6 py-5 text-[1.0625rem] text-graphite-900">
-          {c.differential}
-        </p>
+        <div className="space-y-4 border-l-4 border-gold bg-gold-veil px-6 py-5 text-[1.0625rem] text-graphite-900">
+          {paragraphs.map((p, k) => (
+            <p key={k}>{p}</p>
+          ))}
+        </div>
       ),
     });
   }

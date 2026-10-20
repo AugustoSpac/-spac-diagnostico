@@ -16,14 +16,15 @@ export function CaseCard({
     size === "wide"
       ? "aspect-[4/3] md:aspect-[21/8]"
       : size === "feature"
-        ? "aspect-[4/3] lg:aspect-[16/11]"
+        ? "aspect-[4/3] lg:absolute lg:inset-0 lg:aspect-auto"
         : "aspect-[16/9]";
   return (
     <Link
       href={`/cases/${item.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-card border border-gray-200 bg-white transition-colors duration-500 ease-spac hover:border-gold"
     >
-      <div className="relative overflow-hidden">
+      {/* No destaque (desktop), a arte ocupa a altura que sobra, acompanhando a coluna ao lado. */}
+      <div className={`relative overflow-hidden ${size === "feature" ? "lg:min-h-[22rem] lg:flex-1" : ""}`}>
         <TrajectoryArt
           seed={item.artSeed}
           className={`transition-transform duration-[1.2s] ease-spac group-hover:scale-[1.04] ${aspect}`}
@@ -42,7 +43,7 @@ export function CaseCard({
           <p className="t-kicker mt-3 text-gray-300">{item.headline.label}</p>
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-6 md:p-7">
+      <div className={`flex flex-col gap-3 p-6 md:p-7 ${size === "feature" ? "flex-1 lg:flex-none" : "flex-1"}`}>
         <p className="t-kicker text-gray-600">{item.client}</p>
         <h3 className={`${feature ? "t-h3" : "t-h4"} text-graphite-900`}>{item.title}</h3>
         <span className="mt-auto inline-flex items-center gap-2 pt-3 text-[0.9375rem] font-extrabold text-graphite-900 transition-colors group-hover:text-gold-text">
